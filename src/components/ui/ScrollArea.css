@@ -1,8 +1,0 @@
-.scroll-area {
-    max-height: 400px; /* Set a maximum height */
-    overflow-y: auto;  /* Enable vertical scrolling */
-    border: 1px solid #ccc; /* Optional border */
-    padding: 10px; /* Optional padding */
-    background: #f9f9f9; /* Optional background color */
-  }
-  

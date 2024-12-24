@@ -1,623 +1,664 @@
 'use client'
 
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useMemo, useEffect } from 'react'
 import {
-  Home,
-  FileText,
-  Folder,
-  LogOut,
-  Bell,
-  MoreVertical,
-  Plus,
-  Search,
-  Trash2,
-  Edit,
-  Paperclip,
-  X,
+  Home, FolderOpen, FileText, LogOut, Search, Upload, Edit3, Trash2, 
+  MoreVertical, PlusCircle, Heart, MessageCircle, FileImage, 
+  FileVideo, FileAudio, File, FileArchive, Moon, Sun, 
+  Filter, Tag, Star, Bell, Download, Users, Settings, 
+  Hash, ChevronDown, ChevronUp, X, Check, Clipboard
 } from 'lucide-react'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "./ui/Dialog"
-import { Button } from "./ui/Button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/Dropdown-menu"
-import { Input } from "./ui/Input"
-import Textarea from "./ui/Textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/Select"
+import { motion, AnimatePresence } from 'framer-motion'
+import { Button } from './ui/Button'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from './ui/Dialog'
+import { Input } from './ui/Input'
+import Textarea from './ui/Textarea'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/Tooltip'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/Dropdown-menu'
 
-const ITEMS_PER_PAGE = 5
+// Utility Functions
+const formatFileSize = (bytes) => {
+  if (bytes === 0) return '0 Bytes'
+  const k = 1024
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+  const i = Math.floor(Math.log(bytes) / Math.log(k))
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
+}
 
-const Sidebar = ({ activeTab, onTabChange }) => (
-  <div className="w-64 h-screen bg-white border-r border-gray-200 fixed left-0 top-0">
-    <div className="p-6">
-      <div className="flex items-center space-x-2">
-        <div className="w-8 h-8 bg-green-600 rounded-lg"></div>
-        <span className="text-xl font-bold">Layene Archive</span>
-      </div>
-    </div>
+const formatDate = (dateString) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  })
+}
 
-    <nav className="mt-6">
-      {['dashboard', 'files', 'posts'].map((tab) => (
-        <SidebarLink 
-          key={tab}
-          icon={tab === 'dashboard' ? Home : tab === 'files' ? Folder : FileText} 
-          label={tab.charAt(0).toUpperCase() + tab.slice(1)} 
-          active={activeTab === tab} 
-          onClick={() => onTabChange(tab)}
-        />
-      ))}
-    </nav>
+// File Type Icons Mapping
+const FileTypeIcons = {
+  'image': FileImage,
+  'video': FileVideo,
+  'audio': FileAudio,
+  'application/pdf': FileText,
+  'application/zip': FileArchive,
+  'default': File
+}
 
-    <div className="absolute bottom-4 w-full px-6">
-      <SidebarLink icon={LogOut} label="Log out" />
-    </div>
-  </div>
-)
-
-const SidebarLink = ({ icon: Icon, label, active, onClick }) => (
-  <div 
-    className={`flex items-center space-x-3 px-6 py-3 cursor-pointer ${
-      active ? 'bg-green-50 text-green-600' : 'text-gray-600 hover:bg-gray-50'
-    }`}
-    onClick={onClick}
-  >
-    <Icon className="w-5 h-5" />
-    <span className={active ? 'font-medium' : ''}>{label}</span>
-  </div>
-)
-
-const Header = ({ searchTerm, onSearchChange }) => (
-  <div className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6">
-    <div className="flex items-center flex-1 ml-64">
-      <div className="relative w-96">
-        <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-        <Input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => onSearchChange(e.target.value)}
-          placeholder="Search files and posts..."
-          className="w-full pl-10"
-        />
-      </div>
-    </div>
-    <div className="flex items-center space-x-4">
-      <button className="p-2 text-gray-400 hover:text-gray-600">
-        <Bell className="w-5 h-5" />
-      </button>
-      <div className="flex items-center space-x-2">
-        <img
-          src="/placeholder.svg?height=32&width=32"
-          alt="Admin"
-          className="w-8 h-8 rounded-full"
-        />
-        <span className="text-sm font-medium">Admin</span>
-      </div>
-    </div>
-  </div>
-)
-
-const FileUploadModal = ({ isOpen, onClose, onUpload, initialFile = null }) => {
-  const [file, setFile] = useState(initialFile ? initialFile : null)
-  const [fileType, setFileType] = useState(initialFile ? initialFile.type : 'document')
-
-  const handleUpload = () => {
-    if (!file) return
-    
-    const newFile = {
-      id: initialFile ? initialFile.id : Date.now(),
-      name: file.name,
-      type: fileType,
-      size: `${Math.round(file.size / 1024)} KB`,
-      uploadDate: new Date().toISOString().split('T')[0],
-      posts: initialFile ? initialFile.posts : 0,
-      url: URL.createObjectURL(file) // Create a local URL for the file
-    }
-    
-    onUpload(newFile)
-    onClose()
-    setFile(null)
-  }
+// Navigation Bar Component
+const NavigationBar = ({ activeTab, onTabChange, isDarkMode, toggleTheme, onLogout }) => {
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{initialFile ? 'Edit File' : 'Upload New File'}</DialogTitle>
-        </DialogHeader>
-        <div className="space-y-4 py-4">
-          <div className="flex flex-col space-y-2">
-            <label className="text-sm font-medium">File Type</label>
-            <Select value={fileType} onValueChange={setFileType}>
-              <SelectTrigger>
-                <SelectValue placeholder="Select file type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="document">Document</SelectItem>
-                <SelectItem value="image">Image</SelectItem>
-                <SelectItem value="video">Video</SelectItem>
-                <SelectItem value="audio">Audio</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="flex flex-col space-y-2">
-            <label className="text-sm font-medium">File</label>
-            <Input 
-              type="file" 
-              onChange={(e) => setFile(e.target.files[0])}
-            />
-          </div>
+    <div className={`fixed left-0 top-0 h-full w-20 ${isDarkMode ? 'bg-neutral-900 border-neutral-800' : 'bg-white border-neutral-100'} border-r shadow-sm flex flex-col transition-colors z-50`}>
+      <div className="p-4 flex justify-center items-center">
+        <div className={`w-10 h-10 ${isDarkMode ? 'bg-emerald-700 text-white' : 'bg-emerald-600 text-white'} rounded-lg flex items-center justify-center font-bold text-sm`}>
+          LA
         </div>
-        <DialogFooter>
-          <Button variant="outline" onClick={onClose}>Cancel</Button>
-          <Button onClick={handleUpload} disabled={!file}>
-            {initialFile ? 'Update' : 'Upload'}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+      </div>
+      
+      <nav className="flex-grow flex flex-col space-y-4 p-4">
+        {[
+          { tab: 'dashboard', icon: Home, tooltip: 'Dashboard' },
+          { tab: 'files', icon: FolderOpen, tooltip: 'Files' },
+          { tab: 'posts', icon: FileText, tooltip: 'Posts' },
+          { tab: 'team', icon: Users, tooltip: 'Team' }
+        ].map(({ tab, icon: Icon, tooltip }) => (
+          <TooltipProvider key={tab}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => onTabChange(tab)}
+                  className={`
+                    p-3 rounded-xl transition-all duration-300
+                    ${activeTab === tab 
+                      ? `${isDarkMode ? 'bg-emerald-800 text-white' : 'bg-emerald-600 text-white'}` 
+                      : `${isDarkMode ? 'text-neutral-400 hover:bg-neutral-800' : 'text-neutral-500 hover:bg-neutral-100'} hover:text-emerald-600`
+                    }
+                  `}
+                >
+                  <Icon className="w-6 h-6" />
+                </motion.button>
+              </TooltipTrigger>
+              <TooltipContent side="right">
+                {tooltip}
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        ))}
+      </nav>
+
+      <div className="p-4 space-y-2">
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <motion.button 
+                onClick={toggleTheme}
+                whileHover={{ rotate: 180 }}
+                className={`${isDarkMode ? 'text-neutral-300 hover:text-white' : 'text-neutral-500 hover:text-emerald-600'}`}
+              >
+                {isDarkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+              </motion.button>
+            </TooltipTrigger>
+            <TooltipContent side="right">
+              Toggle Theme
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+        
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <motion.button 
+                onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+                whileHover={{ scale: 1.1 }}
+                className={`${isDarkMode ? 'text-neutral-300 hover:text-white' : 'text-neutral-500 hover:text-emerald-600'}`}
+              >
+                <Settings className="w-6 h-6" />
+              </motion.button>
+            </TooltipTrigger>
+            <TooltipContent side="right">
+              Settings
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <motion.button 
+                onClick={onLogout}
+                whileHover={{ rotate: 180 }}
+                className={`${isDarkMode ? 'text-neutral-300 hover:text-white' : 'text-neutral-500 hover:text-emerald-600'}`}
+              >
+                <LogOut className="w-6 h-6" />
+              </motion.button>
+            </TooltipTrigger>
+            <TooltipContent side="right">
+              Logout
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
+    </div>
   )
 }
 
-const CreatePostModal = ({ isOpen, onClose, onSave, files }) => {
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
-  const [selectedFiles, setSelectedFiles] = useState([])
-  const [newFiles, setNewFiles] = useState([])
+// File Preview Component
+const FilePreview = ({ file, isDarkMode }) => {
+  const renderPreview = () => {
+    if (!file || !file.url) return null
+
+    const fileType = file.type || ''
+    const mainType = fileType.split('/')[0]
+    const subType = fileType.split('/')[1]
+
+    const FileIcon = FileTypeIcons[mainType] || FileTypeIcons[`${mainType}/${subType}`] || FileTypeIcons['default']
+
+    switch (mainType) {
+      case 'image':
+        return (
+          <div className={`w-full h-40 overflow-hidden rounded-lg ${isDarkMode ? 'bg-neutral-800' : 'bg-gray-100'} flex items-center justify-center`}>
+            <img 
+              src={file.url} 
+              alt={file.name} 
+              onError={(e) => {
+                e.target.style.display = 'none'
+                e.target.parentNode.innerHTML = `
+                  <div class="w-full h-full flex items-center justify-center ${isDarkMode ? 'text-neutral-400' : 'text-neutral-500'}">
+                    Image cannot be previewed
+                  </div>
+                `
+              }}
+              className="w-full h-full object-cover hover:scale-110 transition-transform"
+            />
+          </div>
+        )
+      
+      case 'video':
+        return (
+          <video 
+            src={file.url} 
+            controls 
+            className={`w-full h-40 rounded-lg ${isDarkMode ? 'bg-neutral-900' : 'bg-black'}`}
+            onError={(e) => {
+              e.target.style.display = 'none'
+              e.target.parentNode.innerHTML = `
+                <div class="w-full h-40 flex items-center justify-center ${isDarkMode ? 'text-neutral-400' : 'text-neutral-500'}">
+                  Video cannot be previewed
+                </div>
+              `
+            }}
+          />
+        )
+      
+      default:
+        return (
+          <div className={`w-full h-40 ${isDarkMode ? 'bg-neutral-800' : 'bg-gray-100'} flex items-center justify-center rounded-lg`}>
+            <FileIcon className={`w-16 h-16 ${isDarkMode ? 'text-neutral-400' : 'text-neutral-500'}`} />
+          </div>
+        )
+    }
+  }
+
+  return (
+    <div className="w-full h-40 mb-3">
+      {renderPreview()}
+    </div>
+  )
+}
+
+// File Card Component
+const FileCard = ({ file, onEdit, onDelete, onCopy, isDarkMode }) => {
+  const [isHovered, setIsHovered] = useState(false)
+  const FileTypeIcon = FileTypeIcons[file.type?.split('/')[0]] || FileTypeIcons[file.type] || FileTypeIcons['default']
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      className={`${isDarkMode ? 'bg-neutral-900 border-neutral-800' : 'bg-white border-neutral-100'} border rounded-xl p-4 space-y-3 relative group shadow-sm hover:shadow-md transition-shadow`}
+    >
+      <FilePreview file={file} isDarkMode={isDarkMode} />
+
+      <div className="flex justify-between items-center">
+        <div className="flex items-center space-x-2">
+          <FileTypeIcon className={`w-5 h-5 ${isDarkMode ? 'text-neutral-400' : 'text-neutral-500'}`} />
+          <span className={`text-sm font-medium ${isDarkMode ? 'text-neutral-300' : 'text-neutral-700'} truncate max-w-[200px]`}>
+            {file?.name || 'Unnamed File'}
+          </span>
+        </div>
+
+        <div 
+          className={`flex space-x-2 transition-opacity duration-300 ${
+            isHovered ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <motion.button 
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => onCopy(file)}
+                  className={`${isDarkMode ? 'text-neutral-400 hover:text-emerald-600' : 'text-neutral-500 hover:text-emerald-600'} transition-colors`}
+                  aria-label="Copy file link"
+                >
+                  <Clipboard className="w-4 h-4" />
+                </motion.button>
+              </TooltipTrigger>
+              <TooltipContent>
+                Copy File Link
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <motion.button 
+                  whileTap={{ scale: 0.9 }}
+                  onClick={onEdit}
+                  className={`${isDarkMode ? 'text-neutral-400 hover:text-emerald-600' : 'text-neutral-500 hover:text-emerald-600'} transition-colors`}
+                  aria-label="Edit file"
+                >
+                  <Edit3 className="w-4 h-4" />
+                </motion.button>
+              </TooltipTrigger>
+              <TooltipContent>
+                Edit File
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <motion.button 
+                  whileTap={{ scale: 0.9 }}
+                  onClick={onDelete}
+                  className={`${isDarkMode ? 'text-red-500 hover:text-red-400' : 'text-red-500 hover:text-red-700'} transition-colors`}
+                  aria-label="Delete file"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </motion.button>
+              </TooltipTrigger>
+              <TooltipContent>
+                Delete File
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+      </div>
+
+      <div className={`flex justify-between text-xs ${isDarkMode ? 'text-neutral-500' : 'text-neutral-500'} mt-2`}>
+        <span>{file?.type || 'Unknown Type'}</span>
+        <div className="flex space-x-2">
+          <span>{formatFileSize(file?.size || 0)}</span>
+          <span>•</span>
+          <span>{formatDate(file?.uploadDate)}</span>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+// File Upload Modal
+const FileUploadModal = ({ isOpen, onClose, onUpload, isDarkMode }) => {
+  const [file, setFile] = useState(null)
+  const [filePreview, setFilePreview] = useState(null)
   const fileInputRef = useRef(null)
 
-  const handleSave = () => {
-    if (!title || !content) return
+  const handleFileSelect = (e) => {
+    const selectedFile = e.target.files[0]
+    setFile(selectedFile)
     
-    const newPost = {
-      id: Date.now(),
-      title,
-      content,
-      date: new Date().toISOString().split('T')[0],
-      files: [...selectedFiles, ...newFiles]
-    }
-    
-    onSave(newPost)
-    onClose()
-    setTitle('')
-    setContent('')
-    setSelectedFiles([])
-    setNewFiles([])
-  }
-
-  const handleFileSelect = (file) => {
-    setSelectedFiles(prev => [...prev, file])
-  }
-
-  const handleNewFileUpload = (e) => {
-    const file = e.target.files[0]
-    if (file) {
-      const newFile = {
-        id: Date.now(),
-        name: file.name,
-        type: file.type.split('/')[0],
-        size: `${Math.round(file.size / 1024)} KB`,
-        uploadDate: new Date().toISOString().split('T')[0],
-        url: URL.createObjectURL(file)
+    if (selectedFile) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setFilePreview(reader.result)
       }
-      setNewFiles(prev => [...prev, newFile])
+      reader.readAsDataURL(selectedFile)
     }
   }
 
-  const removeFile = (fileToRemove) => {
-    setSelectedFiles(prev => prev.filter(file => file.id !== fileToRemove.id))
-    setNewFiles(prev => prev.filter(file => file.id !== fileToRemove.id))
+  const handleUpload = () => {
+    if (file) {
+      onUpload(file)
+      onClose()
+      setFile(null)
+      setFilePreview(null)
+    }
   }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent>
+      <DialogContent className={`sm:max-w-[425px] ${isDarkMode ? 'bg-neutral-900 border-neutral-800' : ''}`}>
         <DialogHeader>
-          <DialogTitle>Create New Post</DialogTitle>
+          <DialogTitle className={isDarkMode ? 'text-neutral-100' : ''}>Upload File</DialogTitle>
+          <DialogDescription className={isDarkMode ? 'text-neutral-400' : ''}>
+            Drag and drop or click to select a file to upload
+          </DialogDescription>
         </DialogHeader>
-        <div className="space-y-4 py-4">
-          <div className="flex flex-col space-y-2">
-            <label className="text-sm font-medium">Title</label>
-            <Input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+        <div className="space-y-4">
+          <div 
+            onClick={() => fileInputRef.current.click()}
+            className={`border-2 border-dashed ${
+              isDarkMode 
+                ? 'border-emerald-800 text-neutral-400 hover:bg-neutral-800' 
+                : 'border-emerald-600 text-neutral-500 hover:bg-neutral-50'
+            } rounded-lg p-6 text-center cursor-pointer transition relative`}
+          >
+            <input 
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileSelect}
+              className="hidden"
+              multiple={false}
+              accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.mp4,.mp3,.zip"
             />
+            {filePreview ? (
+              <div className="w-full h-48 flex items-center justify-center">
+                <img 
+                  src={filePreview} 
+                  alt="File preview" 
+                  className="max-h-full max-w-full object-contain rounded-lg"
+                />
+              </div>
+            ) : (
+              <div className="flex flex-col items-center space-y-2">
+                <Upload className={`w-10 h-10 ${isDarkMode ? 'text-emerald-700' : 'text-emerald-600'}`} />
+                <p>Click or drag file to upload</p>
+                <p className="text-xs text-neutral-500">Supported: PDF, DOC, Image, Video, Audio</p>
+              </div>
+            )}
           </div>
-          <div className="flex flex-col space-y-2">
-            <label className="text-sm font-medium">Content</label>
-            <Textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              rows={4}
-            />
-          </div>
-          <div className="flex flex-col space-y-2">
-            <label className="text-sm font-medium">Attach Files</label>
-            <div className="flex flex-wrap gap-2">
-              {[...selectedFiles, ...newFiles].map(file => (
-                <div key={file.id} className="flex items-center bg-gray-100 rounded-full px-3 py-1">
-                  <span className="text-sm">{file.name}</span>
-                  <button onClick={() => removeFile(file)} className="ml-2 text-gray-500 hover:text-gray-700">
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-              ))}
-            </div>
-            <div className="flex space-x-2">
-              <Select onValueChange={handleFileSelect}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select existing file" />
-                </SelectTrigger>
-                <SelectContent>
-                  {files.map(file => (
-                    <SelectItem key={file.id} value={file}>{file.name}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Button onClick={() => fileInputRef.current.click()}>
-                <Paperclip className="w-4 h-4 mr-2" />
-                Upload New
-              </Button>
-              <input
-                type="file"
-                ref={fileInputRef}
-                onChange={handleNewFileUpload}
-                className="hidden"
-              />
-            </div>
-          </div>
+          <Button 
+            onClick={handleUpload} 
+            className={`w-full ${
+              isDarkMode 
+                ? 'bg-emerald-800 hover:bg-emerald-700 text-white' 
+                : 'bg-emerald-600 hover:bg-emerald-700 text-white'
+            }`}
+            disabled={!file}
+          >
+            Upload File
+          </Button>
         </div>
-        <DialogFooter>
-          <Button variant="outline" onClick={onClose}>Cancel</Button>
-          <Button onClick={handleSave} disabled={!title || !content}>Save</Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   )
 }
 
-const FileManager = ({ files, onDelete, onEdit, typeFilter, onTypeFilterChange }) => (
-  <div className="bg-white rounded-lg border border-gray-200 mt-6">
-    <div className="flex items-center justify-between p-4 border-b border-gray-200">
-      <h2 className="text-lg font-semibold">Archive Files</h2>
-      <div className="flex items-center space-x-3">
-        <div className="flex items-center space-x-2">
-          <span className="text-sm text-gray-600">Type</span>
-          <Select value={typeFilter} onValueChange={onTypeFilterChange}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select file type" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All</SelectItem>
-              <SelectItem value="audio">Audio</SelectItem>
-              <SelectItem value="video">Video</SelectItem>
-              <SelectItem value="document">Document</SelectItem>
-              <SelectItem value="image">Image</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-    </div>
+// File Filter and Sort Dropdown
+const FileFilterDropdown = ({ isDarkMode, onFilterChange }) => {
+  const [filterType, setFilterType] = useState('all')
+  const [sortBy, setSortBy] = useState('date')
 
-    <table className="w-full">
-      <thead className="bg-gray-50">
-        <tr>
-          <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">File Name</th>
-          <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">Type</th>
-          <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">Size</th>
-          <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">Upload Date</th>
-          <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">Used In Posts</th>
-          <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">Action</th>
-        </tr>
-      </thead>
-      <tbody className="divide-y divide-gray-200">
-        {files.map((file) => (
-          <tr key={file.id} className="hover:bg-gray-50">
-            <td className="px-6 py-4">
-              <div className="flex items-center space-x-3">
-                <span className="text-sm font-medium">{file.name}</span>
-              </div>
-            </td>
-            <td className="px-6 py-4 text-sm">{file.type}</td>
-            <td className="px-6 py-4 text-sm">{file.size}</td>
-            <td className="px-6 py-4 text-sm">{file.uploadDate}</td>
-            <td className="px-6 py-4 text-sm">{file.posts}</td>
-            <td className="px-6 py-4">
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <MoreVertical className="w-5 h-5 text-gray-400" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem onClick={() => onEdit(file)}>
-                    <Edit className="w-4 h-4 mr-2" />
-                    Edit
-                  </DropdownMenuItem>
-                  <DropdownMenuItem 
-                    className="text-red-600"
-                    onClick={() => onDelete(file.id)}
-                  >
-                    <Trash2 className="w-4 h-4 mr-2" />
-                    Delete
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-)
-
-const FilePreview = ({ file }) => {
-  switch (file.type) {
-    case 'image':
-      return <img src={file.url} alt={file.name} className="max-w-full h-auto rounded-lg" />
-    case 'video':
-      return <video src={file.url} controls className="max-w-full rounded-lg" />
-    case 'audio':
-      return <audio src={file.url} controls className="w-full" />
-    case 'document':
-      if  (file.name.endsWith('.pdf')) {
-        return <embed src={file.url} type="application/pdf" width="100%" height="500px" />
-      }
-      return <a href={file.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">View {file.name}</a>
-    default:
-      return <span>Unsupported file type</span>
+  const handleFilterChange = (type) => {
+    setFilterType(type)
+    onFilterChange({ type, sortBy })
   }
+
+  const handleSortChange = (sort) => {
+    setSortBy(sort)
+    onFilterChange({ type: filterType, sortBy: sort })
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          className={`flex items-center space-x-2 px-3 py-2 rounded-lg ${
+            isDarkMode 
+              ? 'bg-neutral-800 text-neutral-300 hover:bg-neutral-700'
+              : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+          }`}
+        >
+          <Filter className="w-4 h-4" />
+          <span className="text-sm">Filter & Sort</span>
+        </motion.button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className={isDarkMode ? 'bg-neutral-900 border-neutral-800' : ''}>
+        <div className="p-2">
+          <p className={`text-xs mb-2 ${isDarkMode ? 'text-neutral-400' : 'text-neutral-600'}`}>File Type</p>
+          {['all', 'image', 'video', 'document', 'audio'].map((type) => (
+            <DropdownMenuItem 
+              key={type}
+              onSelect={() => handleFilterChange(type)}
+              className={`cursor-pointer ${
+                filterType === type 
+                  ? `${isDarkMode ? 'bg-emerald-900 text-emerald-300' : 'bg-emerald-100 text-emerald-700'}` 
+                  : `${isDarkMode ? 'hover:bg-neutral-800' : 'hover:bg-neutral-100'}`
+              }`}
+            >
+              {type.charAt(0).toUpperCase() + type.slice(1)}
+            </DropdownMenuItem>
+          ))}
+          
+          <div className="border-t my-2 border-neutral-200 dark:border-neutral-800"></div>
+          
+          <p className={`text-xs mb-2 ${isDarkMode ? 'text-neutral-400' : 'text-neutral-600'}`}>Sort By</p>
+          {['date', 'name', 'size'].map((sort) => (
+            <DropdownMenuItem 
+              key={sort}
+              onSelect={() => handleSortChange(sort)}
+              className={`cursor-pointer ${
+                sortBy === sort 
+                  ? `${isDarkMode ? 'bg-emerald-900 text-emerald-300' : 'bg-emerald-100 text-emerald-700'}` 
+                  : `${isDarkMode ? 'hover:bg-neutral-800' : 'hover:bg-neutral-100'}`
+              }`}
+            >
+              {sort.charAt(0).toUpperCase() + sort.slice(1)}
+            </DropdownMenuItem>
+          ))}
+        </div>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
 }
 
-const Posts = ({ posts, onDelete }) => (
-  <div className="space-y-4">
-    {posts.map(post => (
-      <div key={post.id} className="bg-white p-6 rounded-lg border border-gray-200">
-        <div className="flex justify-between items-start">
-          <div>
-            <h3 className="text-lg font-medium">{post.title}</h3>
-            <p className="text-sm text-gray-500 mt-1">{post.date}</p>
-          </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <MoreVertical className="w-5 h-5 text-gray-400" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem 
-                className="text-red-600"
-                onClick={() => onDelete(post.id)}
-              >
-                <Trash2 className="w-4 h-4 mr-2" />
-                Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-        <p className="mt-4 text-gray-600">{post.content}</p>
-        {post.files && post.files.length > 0 && (
-          <div className="mt-4 space-y-4">
-            <h4 className="text-sm font-medium">Attached Files:</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {post.files.map(file => (
-                <div key={file.id} className="border rounded-lg p-4">
-                  <FilePreview file={file} />
-                  <p className="mt-2 text-sm font-medium">{file.name}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    ))}
-  </div>
-)
-
-const Pagination = ({ currentPage, totalPages, onPageChange }) => (
-  <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200">
-    <Button 
-      variant="outline"
-      onClick={() => onPageChange(currentPage - 1)}
-      disabled={currentPage === 1}
-    >
-      Previous
-    </Button>
-    <div className="flex items-center space-x-2">
-      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-        <Button
-          key={page}
-          variant={page === currentPage ? 'default' : 'outline'}
-          onClick={() => onPageChange(page)}
-          className="w-8 h-8 p-0"
-        >
-          {page}
-        </Button>
-      ))}
-    </div>
-    <Button 
-      variant="outline"
-      onClick={() => onPageChange(currentPage + 1)}
-      disabled={currentPage === totalPages}
-    >
-      Next
-    </Button>
-  </div>
-)
-
-export default function Dashboard() {
+// Main Application Component
+export default function EnhancedModernArchive() {
+  const [isDarkMode, setIsDarkMode] = useState(false)
   const [activeTab, setActiveTab] = useState('files')
+  const [searchTerm, setSearchTerm] = useState('')
   const [files, setFiles] = useState([
     {
       id: 1,
-      name: 'Conference_2023.mp4',
-      type: 'video',
-      size: '256 MB',
-      uploadDate: '2024-03-01',
-      posts: 2,
-      url: '/placeholder.svg?height=300&width=400'
+      name: 'Conference_Recording_2023.mp4',
+      type: 'video/mp4',
+      size: 256 * 1024 * 1024, // 256 MB
+      url: '', // Add a valid URL if you want to preview
+      uploadDate: '2024-03-01'
     },
     {
       id: 2,
       name: 'Religious_Teachings.pdf',
-      type: 'document',
-      size: '12 MB',
-      uploadDate: '2024-03-02',
-      posts: 1,
-      url: '/placeholder.svg?height=300&width=400'
-    }
-  ])
-  
-  const [posts, setPosts] = useState([
+      type: 'application/pdf',
+      size: 12 * 1024 * 1024, // 12 MB
+      url: '', // Add a valid URL if you want to preview
+      uploadDate: '2024-03-02'
+    },
     {
-      id: 1,
-      title: 'Community Update',
-      content: 'Latest updates from our community gathering...',
-      date: '2024-03-01',
-      files: [
-        {
-          id: 1,
-          name: 'Conference_2023.mp4',
-          type: 'video',
-          url: '/placeholder.svg?height=300&width=400'
-        }
-      ]
+      id: 3,
+      name: 'Project_Presentation.pptx',
+      type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      size: 5 * 1024 * 1024, // 5 MB
+      url: '',
+      uploadDate: '2024-02-15'
     }
   ])
-
-  const [searchTerm, setSearchTerm] = useState('')
-  const [typeFilter, setTypeFilter] = useState('all')
-  const [currentPage, setCurrentPage] = useState(1)
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false)
-  const [isPostModalOpen, setIsPostModalOpen] = useState(false)
-  const [editingFile, setEditingFile] = useState(null)
+  const [fileFilter, setFileFilter] = useState({ type: 'all', sortBy: 'date' })
 
-  // Filter and search logic
-  const filteredFiles = files.filter(file => {
-    const matchesSearch = file.name.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesType = typeFilter === 'all' || file.type === typeFilter
-    return matchesSearch && matchesType
-  })
-
-  const filteredPosts = posts.filter(post =>
-    post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    post.content.toLowerCase().includes(searchTerm.toLowerCase())
-  )
-
-  // Pagination logic
-  const totalPages = Math.ceil(
-    (activeTab === 'files' ? filteredFiles : filteredPosts).length / ITEMS_PER_PAGE
-  )
-  
-  const paginatedItems = (activeTab === 'files' ? filteredFiles : filteredPosts)
-    .slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
-
-  // File operations
-  const handleFileUpload = (newFile) => {
-    setFiles(prev => [...prev, newFile])
+  // Toggle theme
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode)
   }
 
-  const handleFileDelete = (fileId) => {
-    setFiles(prev => prev.filter(file => file.id !== fileId))
-  }
-
-  const handleFileEdit = (file) => {
-    setEditingFile(file)
-    setIsUploadModalOpen(true)
-  }
-
-  const handleFileUpdate = (updatedFile) => {
-    setFiles(prev => prev.map(file => 
-      file.id === updatedFile.id ? updatedFile : file
-    ))
-    setEditingFile(null)
-  }
-
-  // Post operations
-  const handlePostCreate = (newPost) => {
-    setPosts(prev => [...prev, newPost])
-    // Update file usage count
-    setFiles(prev => prev.map(file => {
-      if (newPost.files.some(postFile => postFile.id === file.id)) {
-        return { ...file, posts: file.posts + 1 }
-      }
-      return file
-    }))
-  }
-
-  const handlePostDelete = (postId) => {
-    const postToDelete = posts.find(post => post.id === postId)
-    setPosts(prev => prev.filter(post => post.id !== postId))
-    // Update file usage count
-    if (postToDelete && postToDelete.files) {
-      setFiles(prev => prev.map(file => {
-        if (postToDelete.files.some(postFile => postFile.id === file.id)) {
-          return { ...file, posts: Math.max(0, file.posts - 1) }
-        }
-        return file
-      }))
+  // File upload handler
+  const handleFileUpload = (file) => {
+    const newFile = {
+      id: Date.now(),
+      name: file.name,
+      type: file.type,
+      size: file.size,
+      url: URL.createObjectURL(file),
+      uploadDate: new Date().toISOString().split('T')[0]
     }
+    setFiles(prevFiles => [...prevFiles, newFile])
   }
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page)
+  // File delete handler
+  const handleDeleteFile = (fileId) => {
+    setFiles(prevFiles => prevFiles.filter(file => file.id !== fileId))
+  }
+
+  // Copy file link handler
+  const handleCopyFileLink = (file) => {
+    navigator.clipboard.writeText(file.url)
+      .then(() => {
+        // You could add a toast notification here
+        console.log('File link copied!')
+      })
+      .catch(err => {
+        console.error('Failed to copy file link', err)
+      })
+  }
+
+  // Filtered and sorted files
+  const processedFiles = useMemo(() => {
+    let filteredFiles = files.filter(file => {
+      // Search filter
+      const matchesSearch = file.name.toLowerCase().includes(searchTerm.toLowerCase())
+      
+      // Type filter
+      const matchesType = fileFilter.type === 'all' || 
+        (fileFilter.type === 'image' && file.type.startsWith('image/')) ||
+        (fileFilter.type === 'video' && file.type.startsWith('video/')) ||
+        (fileFilter.type === 'document' && (file.type.includes('pdf') || file.type.includes('document'))) ||
+        (fileFilter.type === 'audio' && file.type.startsWith('audio/'))
+
+      return matchesSearch && matchesType
+    })
+
+    // Sorting
+    return filteredFiles.sort((a, b) => {
+      switch (fileFilter.sortBy) {
+        case 'name':
+          return a.name.localeCompare(b.name)
+        case 'size':
+          return b.size - a.size
+        case 'date':
+        default:
+          return new Date(b.uploadDate) - new Date(a.uploadDate)
+      }
+    })
+  }, [files, searchTerm, fileFilter])
+
+  // Logout handler (placeholder)
+  const handleLogout = () => {
+    // Implement actual logout logic
+    console.log('Logging out...')
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
-      <div className="ml-64">
-        <Header 
-          searchTerm={searchTerm} 
-          onSearchChange={setSearchTerm} 
-        />
-        <main className="p-6">
-          <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold">
-              {activeTab === 'files' ? 'Files' : 'Posts'}
-            </h1>
-            <Button
-              onClick={() => activeTab === 'files' ? setIsUploadModalOpen(true) : setIsPostModalOpen(true)}
+    <div className={`min-h-screen flex transition-colors duration-300 ${
+      isDarkMode ? 'bg-neutral-950 text-neutral-100' : 'bg-neutral-50 text-neutral-900'
+    }`}>
+      {/* Navigation Bar */}
+      <NavigationBar 
+        activeTab={activeTab} 
+        onTabChange={setActiveTab}
+        isDarkMode={isDarkMode}
+        toggleTheme={toggleTheme}
+        onLogout={handleLogout}
+      />
+      
+      <main className="flex-grow pl-20">
+        {/* Top Bar with Search and Filters */}
+        <div className={`pl-6 pr-6 h-16 flex items-center justify-between border-b ${
+          isDarkMode ? 'border-neutral-800' : 'border-neutral-100'
+        }`}>
+          <div className="flex items-center space-x-4 w-full">
+            {/* Search Input */}
+            <div className="relative flex-grow">
+              <Search className={`absolute left-3 top-1/2 -translate-y-1/2 ${isDarkMode ? 'text-neutral-500' : 'text-neutral-400'}`} />
+              <Input 
+                placeholder="Search files..." 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className={`pl-10 ${
+                  isDarkMode 
+                    ? 'bg-neutral-900 border-neutral-800 text-neutral-100 placeholder-neutral-600' 
+                    : 'bg-white border-neutral-200 text-neutral-900 placeholder-neutral-400'
+                }`}
+              />
+            </div>
+
+            {/* Filter Dropdown */}
+            <FileFilterDropdown 
+              isDarkMode={isDarkMode} 
+              onFilterChange={setFileFilter}
+            />
+
+            {/* Upload Button */}
+            <motion.button
+              onClick={() => setIsUploadModalOpen(true)}
+              whileHover={{ scale: 1.05 }}
+              className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
+                isDarkMode 
+                  ? 'bg-emerald-800 text-white hover:bg-emerald-700'
+                  : 'bg-emerald-600 text-white hover:bg-emerald-700'
+              }`}
             >
-              <Plus className="w-4 h-4 mr-2" />
-              {activeTab === 'files' ? 'Upload File' : 'Create Post'}
-            </Button>
+              <PlusCircle className="w-5 h-5 mr-2" />
+              Upload
+            </motion.button>
           </div>
+        </div>
 
-          {activeTab === 'files' ? (
-            <FileManager
-              files={paginatedItems}
-              onDelete={handleFileDelete}
-              onEdit={handleFileEdit}
-              typeFilter={typeFilter}
-              onTypeFilterChange={setTypeFilter}
-            />
-          ) : (
-            <Posts
-              posts={paginatedItems}
-              onDelete={handlePostDelete}
-            />
-          )}
+        {/* Files Grid */}
+        <div className="p-6">
+          <AnimatePresence>
+            {processedFiles.length === 0 ? (
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className={`text-center py-12 ${isDarkMode ? 'text-neutral-500' : 'text-neutral-600'}`}
+              >
+                <FolderOpen className={`mx-auto w-16 h-16 mb-4 ${isDarkMode ? 'text-neutral-700' : 'text-neutral-300'}`} />
+                <p>No files found</p>
+                <p className="text-sm mt-2">Upload a file to get started</p>
+              </motion.div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {processedFiles.map(file => (
+                  <FileCard 
+                    key={file.id}
+                    file={file}
+                    isDarkMode={isDarkMode}
+                    onEdit={() => {/* Implement edit functionality */}}
+                    onDelete={() => handleDeleteFile(file.id)}
+                    onCopy={() => handleCopyFileLink(file)}
+                  />
+                ))}
+              </div>
+            )}
+          </AnimatePresence>
+        </div>
 
-          {totalPages > 1 && (
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-          )}
-
-          <FileUploadModal
-            isOpen={isUploadModalOpen}
-            onClose={() => {
-              setIsUploadModalOpen(false)
-              setEditingFile(null)
-            }}
-            onUpload={editingFile ? handleFileUpdate : handleFileUpload}
-            initialFile={editingFile}
-          />
-
-          <CreatePostModal
-            isOpen={isPostModalOpen}
-            onClose={() => setIsPostModalOpen(false)}
-            onSave={handlePostCreate}
-            files={files}
-          />
-        </main>
-      </div>
+        {/* File Upload Modal */}
+        <FileUploadModal 
+          isOpen={isUploadModalOpen}
+          onClose={() => setIsUploadModalOpen(false)}
+          onUpload={handleFileUpload}
+          isDarkMode={isDarkMode}
+        />
+      </main>
     </div>
   )
 }
