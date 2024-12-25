@@ -10,4 +10,3 @@ const Textarea = ({ placeholder, value, onChange, className }) => {
   };
   
   export default Textarea;
-  
