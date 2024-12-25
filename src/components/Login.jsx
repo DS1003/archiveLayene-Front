@@ -15,7 +15,6 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Variants pour les animations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -57,6 +56,10 @@ const Login = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleVisitorAccess = () => {
+    navigate('/home');
   };
 
   const handleInputChange = (e) => {
@@ -284,7 +287,17 @@ const Login = () => {
               </motion.button>
             </motion.form>
 
-            <motion.p 
+            <motion.button
+              onClick={handleVisitorAccess}
+              className="w-full p-3 mt-4 bg-[#FFB400] text-white font-semibold rounded-lg hover:bg-[#ffc339] disabled:opacity-50 flex items-center justify-center text-sm md:text-base"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <LogIn className="mr-2" size={20} /> 
+              Accéder en tant que visiteur
+            </motion.button>
+
+            {/* <motion.p 
               className="text-center text-xs md:text-sm text-gray-500 mt-6"
               variants={itemVariants}
             >
@@ -292,7 +305,7 @@ const Login = () => {
               <Link to="/register" className="text-[#006C5F] hover:text-[#004A42] font-semibold">
                 Inscrivez-vous
               </Link>
-            </motion.p>
+            </motion.p> */}
           </div>
         </motion.div>
       </motion.div>

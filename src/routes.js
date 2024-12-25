@@ -1,17 +1,27 @@
+import Loader from '../src/components/ui/Loader.js';
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Login from './components/Login';
+// Utilitaire pour ajouter un délai artificiel
+const withDelay = (importFunction: () => Promise<any>, delay: number) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(importFunction());
+    }, delay);
+  });
+};
 
-// Lazy load the Dashboard component
-const Dashboard = lazy(() => import('./components/Dashboard'));
-const Home = lazy(() => import('./components/Home'));
-const About  = lazy(() => import('./components/About'));
-const Register = lazy(() => import('./components/Register'));
+// Lazy load avec délai de 3 secondes
+const Dashboard = lazy(() => withDelay(() => import('./components/Dashboard'), 3000));
+const Home = lazy(() => withDelay(() => import('./components/Home'), 3000));
+const About = lazy(() => withDelay(() => import('./components/About'), 3000));
+const Login = lazy(() => withDelay(() => import('./components/Login'), 3000));
+const Register = lazy(() => withDelay(() => import('./components/Register'), 3000));
+
 const AppRoutes = () => {
   
   return (
-    <Suspense fallback={<div className='spinner'>Loading...</div>}>
+    <Suspense fallback={ <Loader /> } >
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/about" element={<About />} />
