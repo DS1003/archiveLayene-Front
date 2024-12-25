@@ -266,18 +266,11 @@ const Home = () => {
                     <div className="flex justify-between items-center py-4">
                         <div className="flex items-center space-x-8">
                             <div className="flex items-center">
-                                <img src={logo3} alt="Logo" className="h-14 w-auto" />
+                                <img src={logo3} alt="Logo" className="h-16 w-auto" />
                             </div>
                         </div>
                         <div className="flex items-center gap-4">
-                            <div className="relative hidden md:flex items-center">
-                                <input
-                                    type="search"
-                                    placeholder="Rechercher..."
-                                    className="pl-10 pr-4 py-2 rounded-full bg-gray-50 border-none focus:ring-2 focus:ring-[#006C5F]/20 w-64"
-                                />
-                                <Search className="absolute left-3 text-gray-400" size={18} />
-                            </div>
+                            
                             <button
                                 className="md:hidden"
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
