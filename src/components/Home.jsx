@@ -17,6 +17,54 @@ import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import logo3 from "../assets/logo21.png";
 
+
+// Composant SearchBar
+const SearchBar = ({ onSearch }) => (
+    <div className="relative">
+        <input
+            type="text"
+            placeholder="Rechercher un article..."
+            onChange={(e) => onSearch(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 bg-gray-50 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#006C5F] focus:bg-white transition-all"
+        />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+    </div>
+);
+
+// Composant Categories
+const Categories = ({ categories, selectedCategory, onSelectCategory }) => {
+    return (
+        <div className="overflow-x-auto whitespace-nowrap py-2 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
+            <div className="flex gap-2">
+                <button
+                    onClick={() => onSelectCategory(null)}
+                    className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all
+                        ${!selectedCategory 
+                            ? 'bg-[#006C5F] text-white' 
+                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        }`}
+                >
+                    Tous
+                </button>
+                {categories.map(category => (
+                    <button
+                        key={category}
+                        onClick={() => onSelectCategory(category)}
+                        className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all
+                            ${selectedCategory === category 
+                                ? 'bg-[#006C5F] text-white' 
+                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                            }`}
+                    >
+                        {category}
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+
 // Notification Component optimisé
 const Notification = ({ message }) => (
     <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 z-50 bg-white shadow-lg rounded-lg py-2 px-3 flex items-center gap-2 border border-green-100 text-green-800 text-sm">
@@ -354,6 +402,24 @@ const Home = () => {
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    
+    // Nouveaux états pour le filtrage
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
+    
+    // Extraire les catégories uniques des articles
+    const categories = [...new Set(articles.map(article => article.category))];
+    
+    // Filtrer les articles en fonction de la catégorie et de la recherche
+    const filteredArticles = articles.filter(article => {
+        const matchesCategory = !selectedCategory || article.category === selectedCategory;
+        const matchesSearch = !searchQuery || 
+            article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            article.author.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+    });
+
 
     const showNotification = (message) => {
         setAlertMessage(message);
@@ -397,43 +463,73 @@ const Home = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            {/* Header optimisé */}
+            {/* Header modifié */}
             <header className="sticky top-0 bg-white/90 backdrop-blur-sm border-b border-gray-100 z-50">
                 <div className="max-w-7xl mx-auto px-4">
-                    <div className="flex justify-between items-center h-14">
+                    {/* Logo et Menu */}
+                    <div className="flex justify-between items-center h-16">
                         <img src={logo3} alt="Logo" className="h-10 w-auto" />
-                        <button className="p-2">
-                            <Menu size={20} />
-                        </button>
+                        <div className="flex items-center gap-4">
+                            <div className="hidden md:block w-64">
+                                <SearchBar onSearch={setSearchQuery} />
+                            </div>
+                            <button 
+                                className="p-2 hover:bg-gray-100 rounded-lg md:hidden"
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            >
+                                <Menu size={20} />
+                            </button>
+                        </div>
                     </div>
+                    
+                    {/* Barre de recherche mobile */}
+                    <div className="md:hidden py-2">
+                        <SearchBar onSearch={setSearchQuery} />
+                    </div>
+                    
+                    {/* Catégories */}
+                    <Categories 
+                        categories={categories}
+                        selectedCategory={selectedCategory}
+                        onSelectCategory={setSelectedCategory}
+                    />
                 </div>
             </header>
 
-            {/* Hero Section optimisé */}
+            {/* Hero Section */}
             <div className="relative bg-gradient-to-r from-[#006C5F] to-[#004A42] text-white py-12 sm:py-16">
                 <div className="max-w-7xl mx-auto px-4">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
                         Explorez notre<br />patrimoine spirituel
                     </h2>
                     <p className="text-base sm:text-lg text-white/90 max-w-2xl leading-relaxed">
-                        Découvrez des articles enrichissants sur l'histoire, les enseignements et la spiritualité de la communauté Layène.
+                        {filteredArticles.length} article{filteredArticles.length > 1 ? 's' : ''} disponible{filteredArticles.length > 1 ? 's' : ''}
+                        {selectedCategory ? ` dans ${selectedCategory}` : ''}
                     </p>
                 </div>
             </div>
 
-            {/* Articles Grid optimisé */}
+            {/* Articles Grid */}
             <div className="max-w-7xl mx-auto px-4 py-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                    {articles.map(article => (
-                        <ArticleCard
-                            key={article.id}
-                            article={article}
-                            onLike={handleLike}
-                            onShare={handleShare}
-                            onMediaSelect={setSelectedMedia}
-                        />
-                    ))}
-                </div>
+                {filteredArticles.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                        {filteredArticles.map(article => (
+                            <ArticleCard
+                                key={article.id}
+                                article={article}
+                                onLike={handleLike}
+                                onShare={handleShare}
+                                onMediaSelect={setSelectedMedia}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-12">
+                        <p className="text-gray-500 text-lg">
+                            Aucun article ne correspond à votre recherche.
+                        </p>
+                    </div>
+                )}
             </div>
 
             {/* Footer optimisé */}
