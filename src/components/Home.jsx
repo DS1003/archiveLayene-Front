@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { ChevronUp } from 'lucide-react';
 import {
     Heart,
     Share2,
@@ -9,6 +10,7 @@ import {
     Image as ImageIcon,
     CheckCircle,
     Search,
+    Download,
     Menu
 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
@@ -113,6 +115,18 @@ const MediaModal = ({ selectedMedia, onClose }) => {
         return (match && match[7].length === 11) ? match[7] : false;
     };
 
+    const getPdfUrl = (url, isDownload = false) => {
+        if (url.includes('drive.google.com')) {
+            const fileId = url.match(/[-\w]{25,}/);
+            return fileId 
+                ? isDownload 
+                    ? `https://drive.google.com/uc?export=download&id=${fileId[0]}`
+                    : `https://drive.google.com/file/d/${fileId[0]}/preview`
+                : url;
+        }
+        return url;
+    };
+
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
             <div className="absolute inset-0 bg-black bg-opacity-50" onClick={onClose} />
@@ -145,16 +159,25 @@ const MediaModal = ({ selectedMedia, onClose }) => {
                         </div>
                     )}
                     {selectedMedia.mediaType === 'pdf' && (
-                        <div className="bg-gray-100 p-6 rounded-lg text-center">
-                            <FileText className="h-16 w-16 mx-auto mb-4 text-[#006C5F]" />
-                            <a
-                                href={selectedMedia.mediaUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="px-4 py-2 bg-[#006C5F] text-white rounded-lg hover:bg-[#004A42] transition-colors inline-block"
-                            >
-                                Télécharger le PDF
-                            </a>
+                        <div className="flex flex-col gap-4">
+                            <div className="w-full h-[70vh] rounded-lg overflow-hidden border border-gray-200">
+                                <iframe
+                                    src={getPdfUrl(selectedMedia.mediaUrl)}
+                                    title={selectedMedia.title}
+                                    className="w-full h-full"
+                                    allowFullScreen
+                                />
+                            </div>
+                            <div className="flex justify-center">
+                                <a
+                                    href={getPdfUrl(selectedMedia.mediaUrl, true)}
+                                    download={`${selectedMedia.title}.pdf`}
+                                    className="flex items-center gap-2 px-6 py-3 bg-[#006C5F] text-white rounded-lg hover:bg-[#004A42] transition-colors"
+                                >
+                                    <Download size={20} />
+                                    Télécharger le PDF
+                                </a>
+                            </div>
                         </div>
                     )}
                 </div>
@@ -162,6 +185,48 @@ const MediaModal = ({ selectedMedia, onClose }) => {
         </div>
     );
 };
+
+
+const ScrollToTop = () => {
+    const [isVisible, setIsVisible] = useState(false);
+  
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+  
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    };
+  
+    useEffect(() => {
+      window.addEventListener("scroll", toggleVisibility);
+      return () => {
+        window.removeEventListener("scroll", toggleVisibility);
+      };
+    }, []);
+  
+    return (
+      <>
+        {isVisible && (
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 p-3 bg-[#006C5F] hover:bg-[#004A42] text-white rounded-full shadow-lg transition-all duration-300 z-50 transform hover:scale-110"
+            aria-label="Retour en haut"
+          >
+            <ChevronUp size={24} />
+          </button>
+        )}
+      </>
+    );
+  };
+
 
 // Composant principal Home
 const Home = () => {
@@ -177,8 +242,8 @@ const Home = () => {
             likes: 156,
             isLiked: false,
             mediaType: "video",
-            mediaUrl: "https://youtu.be/CaPV1TIdtxk?si=R0q9gvXQIe2Bb5Dk",
-            thumbnailUrl: `https://img.youtube.com/vi/CaPV1TIdtxk/maxresdefault.jpg`,
+            mediaUrl: "https://youtu.be/CaPV1TIdtxk",
+            thumbnailUrl: "https://img.youtube.com/vi/CaPV1TIdtxk/maxresdefault.jpg",
             slug: "seydina-limamou-laye-histoire-renaissance-spirituelle"
         },
         {
@@ -207,9 +272,114 @@ const Home = () => {
             likes: 89,
             isLiked: false,
             mediaType: "pdf",
-            mediaUrl: "https://res.cloudinary.com/dgro5x4h8/raw/upload/v1/example.pdf",
-            thumbnailUrl: "/api/placeholder/800/400",
+            mediaUrl: "https://drive.google.com/file/d/1o2TRJy1cgeDpxU9K5m-FF1N7jDt04FaU/view",
+            thumbnailUrl: "/api/placeholder/400/320",
             slug: "communaute-layene-aujourd-hui"
+        },
+        {
+            id: 4,
+            title: "Conférence Cherif Ousseynou LAHI 2005 OHIO",
+            excerpt: "Découvrez l'histoire fascinante de Seydina Limamou Laye et son impact sur la communauté...",
+            author: "Cherif Ousseynou Lahi",
+            publishDate: "2024-12-24T10:30:00",
+            readTime: "8 min",
+            category: "Histoire",
+            likes: 156,
+            isLiked: false,
+            mediaType: "video",
+            mediaUrl: "https://youtu.be/82MGLXcuUrQ",
+            thumbnailUrl: "https://img.youtube.com/vi/82MGLXcuUrQ/maxresdefault.jpg",
+            slug: "seydina-limamou-laye-histoire-renaissance-spirituelle"
+        },
+        {
+            id: 5,
+            title: "TÉMOIGNAGES SUR SHÉRIF OUSSEYNOU LAHI",
+            excerpt: "Cherif Sa leer dou faye...",
+            author: "Cherif Ousseynou Lahi",
+            publishDate: "2024-12-24T10:30:00",
+            readTime: "8 min",
+            category: "Histoire",
+            likes: 156,
+            isLiked: false,
+            mediaType: "video",
+            mediaUrl: "https://youtu.be/IxvfcYMY_5g",
+            thumbnailUrl: "https://img.youtube.com/vi/IxvfcYMY_5g/maxresdefault.jpg",
+            slug: "seydina-limamou-laye-histoire-renaissance-spirituelle"
+        },
+        {
+            id: 6,
+            title: "Message de Cherif Ousseynou Laye Docteur de la Jeunesse",
+            excerpt: "Cherif Sa leer dou faye...",
+            author: "Cherif Ousseynou Lahi",
+            publishDate: "2024-12-24T10:30:00",
+            readTime: "8 min",
+            category: "Histoire",
+            likes: 156,
+            isLiked: false,
+            mediaType: "video",
+            mediaUrl: "https://youtu.be/I-Df1tsi-K4",
+            thumbnailUrl: "https://img.youtube.com/vi/I-Df1tsi-K4/maxresdefault.jpg",
+            slug: "seydina-limamou-laye-histoire-renaissance-spirituelle"
+        },
+        {
+            id: 7,
+            title: "Conférence cherif Ousseynou LAHI",
+            excerpt: "Cherif Sa leer dou faye...",
+            author: "Cherif Ousseynou Lahi",
+            publishDate: "2024-12-24T10:30:00",
+            readTime: "8 min",
+            category: "Histoire",
+            likes: 156,
+            isLiked: false,
+            mediaType: "video",
+            mediaUrl: "https://youtu.be/CG13Jz6_Y0s",
+            thumbnailUrl: "https://img.youtube.com/vi/CG13Jz6_Y0s/maxresdefault.jpg",
+            slug: "seydina-limamou-laye-histoire-renaissance-spirituelle"
+        },
+        {
+            id: 8,
+            title: "Mémorial Chérif Ousseynou Laye aux USA avec l'Association des Layénes d'Amérique",
+            excerpt: "Cherif Sa leer dou faye...",
+            author: "Cherif Ousseynou Lahi",
+            publishDate: "2024-12-24T10:30:00",
+            readTime: "8 min",
+            category: "Histoire",
+            likes: 156,
+            isLiked: false,
+            mediaType: "video",
+            mediaUrl: "https://youtu.be/WHnYMqaZJgA",
+            thumbnailUrl: "https://img.youtube.com/vi/WHnYMqaZJgA/maxresdefault.jpg",
+            slug: "seydina-limamou-laye-histoire-renaissance-spirituelle"
+        },
+        {
+            id: 9,
+            title: "hommage à cherif ousseynou laye",
+            excerpt: "Cherif Sa leer dou faye...",
+            author: "Cherif Ousseynou Lahi",
+            publishDate: "2024-12-24T10:30:00",
+            readTime: "8 min",
+            category: "Histoire",
+            likes: 156,
+            isLiked: false,
+            mediaType: "video",
+            mediaUrl: "https://youtu.be/RabM9AEFeOc",
+            thumbnailUrl: "https://img.youtube.com/vi/RabM9AEFeOc/maxresdefault.jpg",
+            slug: "seydina-limamou-laye-histoire-renaissance-spirituelle"
+        },
+        {
+            id: 10,
+            title: "Memorial Cherif Ousseynou 2015",
+            excerpt: "Cherif Sa leer dou faye...",
+            author: "Cherif Ousseynou Lahi",
+            publishDate: "2024-12-24T10:30:00",
+            readTime: "8 min",
+            category: "Histoire",
+            likes: 156,
+            isLiked: false,
+            mediaType: "video",
+            mediaUrl: "https://youtu.be/w1ZfPPAQq2c",
+            thumbnailUrl: "https://img.youtube.com/vi/w1ZfPPAQq2c/maxresdefault.jpg",
+            slug: "seydina-limamou-laye-histoire-renaissance-spirituelle"
         }
     ]);
 
@@ -259,7 +429,8 @@ const Home = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-[#006C5F] [&::-webkit-scrollbar-thumb]:rounded-full">
+            <ScrollToTop />
             {/* Header */}
             <header className="sticky top-0 backdrop-blur-lg bg-white/80 border-b border-gray-100 z-50">
                 <div className="max-w-7xl mx-auto px-6">
@@ -270,7 +441,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="flex items-center gap-4">
-                            
+
                             <button
                                 className="md:hidden"
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -297,10 +468,10 @@ const Home = () => {
 
             {/* Articles Grid */}
             <div className="max-w-7xl mx-auto px-6 py-16">
-            <div className="space-y-12">
+                <div className="space-y-12">
                     {articles.map(article => (
-                        <ArticleCard 
-                            key={article.id} 
+                        <ArticleCard
+                            key={article.id}
                             article={article}
                             onLike={handleLike}
                             onShare={handleShare}
@@ -332,9 +503,9 @@ const Home = () => {
 
             {/* Modals and Notifications */}
             {selectedMedia && (
-                <MediaModal 
-                    selectedMedia={selectedMedia} 
-                    onClose={() => setSelectedMedia(null)} 
+                <MediaModal
+                    selectedMedia={selectedMedia}
+                    onClose={() => setSelectedMedia(null)}
                 />
             )}
             {showAlert && <Notification message={alertMessage} />}
