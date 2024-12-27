@@ -59,7 +59,7 @@ const Login = () => {
   };
 
   const handleVisitorAccess = () => {
-    navigate('/home');
+    navigate('/');
   };
 
   const handleInputChange = (e) => {

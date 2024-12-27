@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronUp } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import {
     Heart,
     Share2,
@@ -104,13 +105,19 @@ const MediaPreview = ({ article, onClick }) => (
 
 // Composant ArticleCard
 const ArticleCard = ({ article, onLike, onShare, onMediaSelect }) => {
+    const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/article/${article.slug}`);
+  };
+    
     const formatPublishDate = (dateString) => {
         const date = new Date(dateString);
         return formatDistanceToNow(date, { addSuffix: true, locale: fr });
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+        <div onClick={handleClick} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
             <div className="w-full">
                 <MediaPreview article={article} onClick={() => onMediaSelect(article)} />
             </div>

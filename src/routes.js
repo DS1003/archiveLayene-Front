@@ -17,17 +17,20 @@ const Home = lazy(() => withDelay(() => import('./components/Home'), 3000));
 const About = lazy(() => withDelay(() => import('./components/About'), 3000));
 const Login = lazy(() => withDelay(() => import('./components/Login'), 3000));
 const Register = lazy(() => withDelay(() => import('./components/Register'), 3000));
+const ArticlePage = lazy(() => withDelay(() => import('./components/ArticlePage'), 3000));
+
 
 const AppRoutes = () => {
   
   return (
     <Suspense fallback={ <Loader /> } >
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/article/:slug" element={<ArticlePage />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </Suspense>
