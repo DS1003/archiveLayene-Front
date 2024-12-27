@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { 
     Heart, Share2, Clock, ArrowLeft, Download,
-    FileText, User, Calendar, PlayCircle, 
+    FileText, User, Calendar, PlayCircle, CheckCircle,
     ChevronLeft 
 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { useNavigate, useParams } from 'react-router-dom';
+
+const Notification = ({ message }) => (
+    <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 z-50 bg-white shadow-lg rounded-lg py-2 px-3 flex items-center gap-2 border border-green-100 text-green-800 text-sm">
+        <CheckCircle size={16} className="text-green-500" />
+        <span>{message}</span>
+    </div>
+);
 
 const ArticlePage = () => {
     const navigate = useNavigate();
@@ -72,6 +79,7 @@ const ArticlePage = () => {
         } else {
             navigator.clipboard.writeText(window.location.href);
             // Afficher une notification de succès
+            <Notification message="Partagé avec succés !" />
         }
     };
 

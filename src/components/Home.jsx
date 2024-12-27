@@ -17,6 +17,7 @@ import {
 import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import logo3 from "../assets/logo21.png";
+import defaultThumbnail from "../assets/logo3.png";
 
 
 // Composant SearchBar
@@ -75,32 +76,53 @@ const Notification = ({ message }) => (
 );
 
 // Composant MediaPreview
-const MediaPreview = ({ article, onClick }) => (
-    <div
-        className="relative rounded-lg overflow-hidden cursor-pointer group"
-        onClick={onClick}
-    >
-        <img
-            src={article.thumbnailUrl}
-            alt={article.title}
-            className="w-full h-48 sm:h-56 md:h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-            {article.mediaType === 'video' && (
-                <Play size={32} className="text-white" />
-            )}
-            {article.mediaType === 'image' && (
-                <ImageIcon size={32} className="text-white" />
-            )}
-            {article.mediaType === 'pdf' && (
-                <FileText size={32} className="text-white" />
-            )}
+// Composant MediaPreview modifié
+const MediaPreview = ({ article, onClick }) => {
+    // Fonction pour vérifier si l'image est valide
+    const isValidThumbnail = (url) => {
+        if (!url) return false;
+        if (url.includes('maxresdefault.jpg')) {
+            // Vérifier si l'image YouTube existe
+            const img = new Image();
+            img.src = url;
+            return img.complete && img.naturalHeight !== 0;
+        }
+        return true;
+    };
+
+    // Utilisez l'image par défaut si la thumbnail n'est pas valide
+    const thumbnailUrl = isValidThumbnail(article.thumbnailUrl) ? article.thumbnailUrl : defaultThumbnail;
+
+    return (
+        <div
+            className="relative rounded-lg overflow-hidden cursor-pointer group"
+            onClick={onClick}
+        >
+            <img
+                src={thumbnailUrl}
+                alt={article.title}
+                className="w-full h-48 sm:h-56 md:h-72 object-cover transition-transform duration-700 group-hover:scale-110"
+                onError={(e) => {
+                    e.target.src = defaultThumbnail;
+                }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                {article.mediaType === 'video' && (
+                    <Play size={32} className="text-white" />
+                )}
+                {article.mediaType === 'image' && (
+                    <ImageIcon size={32} className="text-white" />
+                )}
+                {article.mediaType === 'pdf' && (
+                    <FileText size={32} className="text-white" />
+                )}
+            </div>
+            <span className="absolute top-2 right-2 px-2 py-1 bg-white/90 text-xs font-medium rounded-full backdrop-blur-sm capitalize">
+                {article.mediaType}
+            </span>
         </div>
-        <span className="absolute top-2 right-2 px-2 py-1 bg-white/90 text-xs font-medium rounded-full backdrop-blur-sm capitalize">
-            {article.mediaType}
-        </span>
-    </div>
-);
+    );
+};
 
 
 // Composant ArticleCard
