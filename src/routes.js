@@ -11,13 +11,13 @@ const withDelay = (importFunction: () => Promise<any>, delay: number) => {
   });
 };
 
-// Lazy load avec délai de 3 secondes
-const Dashboard = lazy(() => withDelay(() => import('./components/Dashboard'), 3000));
-const Home = lazy(() => withDelay(() => import('./components/Home'), 3000));
-const About = lazy(() => withDelay(() => import('./components/About'), 3000));
-const Login = lazy(() => withDelay(() => import('./components/Login'), 3000));
-const Register = lazy(() => withDelay(() => import('./components/Register'), 3000));
-const ArticlePage = lazy(() => withDelay(() => import('./components/ArticlePage'), 3000));
+// Lazy load avec délai de 1 secondes
+const Dashboard = lazy(() => withDelay(() => import('./components/Dashboard'), 1000));
+const Home = lazy(() => withDelay(() => import('./components/Home'), 1000));
+const About = lazy(() => withDelay(() => import('./components/About'), 1000));
+const Login = lazy(() => withDelay(() => import('./components/Login'), 1000));
+const Register = lazy(() => withDelay(() => import('./components/Register'), 1000));
+const ArticlePage = lazy(() => withDelay(() => import('./components/ArticlePage'), 1000));
 
 
 const AppRoutes = () => {
