@@ -17,10 +17,10 @@ import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import logo3 from "../assets/logo21.png";
 
-// Composant Notification
+// Notification Component optimisé
 const Notification = ({ message }) => (
-    <div className="fixed bottom-4 right-4 z-50 bg-white shadow-lg rounded-lg py-3 px-4 flex items-center gap-2 border border-green-100 text-green-800 animate-fade-in">
-        <CheckCircle size={20} className="text-green-500" />
+    <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 z-50 bg-white shadow-lg rounded-lg py-2 px-3 flex items-center gap-2 border border-green-100 text-green-800 text-sm">
+        <CheckCircle size={16} className="text-green-500" />
         <span>{message}</span>
     </div>
 );
@@ -28,30 +28,31 @@ const Notification = ({ message }) => (
 // Composant MediaPreview
 const MediaPreview = ({ article, onClick }) => (
     <div
-        className="relative rounded-xl overflow-hidden cursor-pointer group"
+        className="relative rounded-lg overflow-hidden cursor-pointer group"
         onClick={onClick}
     >
         <img
             src={article.thumbnailUrl}
             alt={article.title}
-            className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
+            className="w-full h-48 sm:h-56 md:h-72 object-cover transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
             {article.mediaType === 'video' && (
-                <Play size={48} className="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500" />
+                <Play size={32} className="text-white" />
             )}
             {article.mediaType === 'image' && (
-                <ImageIcon size={48} className="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500" />
+                <ImageIcon size={32} className="text-white" />
             )}
             {article.mediaType === 'pdf' && (
-                <FileText size={48} className="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500" />
+                <FileText size={32} className="text-white" />
             )}
         </div>
-        <span className="absolute top-4 right-4 px-3 py-1 bg-white/90 text-sm font-medium rounded-full backdrop-blur-sm capitalize">
+        <span className="absolute top-2 right-2 px-2 py-1 bg-white/90 text-xs font-medium rounded-full backdrop-blur-sm capitalize">
             {article.mediaType}
         </span>
     </div>
 );
+
 
 // Composant ArticleCard
 const ArticleCard = ({ article, onLike, onShare, onMediaSelect }) => {
@@ -61,51 +62,53 @@ const ArticleCard = ({ article, onLike, onShare, onMediaSelect }) => {
     };
 
     return (
-        <div className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 p-6 flex flex-col md:flex-row gap-8 border border-gray-100">
-            <div className="md:w-2/3 flex flex-col">
-                <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-4">
-                    <span className="font-semibold bg-gray-50 px-3 py-1 rounded-full">{article.author}</span>
-                    <span className="bg-gray-50 px-3 py-1 rounded-full">{article.category}</span>
+        <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+            <div className="w-full">
+                <MediaPreview article={article} onClick={() => onMediaSelect(article)} />
+            </div>
+
+            <div className="p-4">
+                <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 mb-2">
+                    <span className="font-medium bg-gray-50 px-2 py-0.5 rounded-full">{article.author}</span>
+                    <span className="bg-gray-50 px-2 py-0.5 rounded-full">{article.category}</span>
                     <span className="text-gray-400 flex items-center">
-                        <Clock size={14} className="mr-1" />
+                        <Clock size={12} className="mr-1" />
                         {formatPublishDate(article.publishDate)}
                     </span>
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900 hover:text-[#006C5F] cursor-pointer transition-colors">
+                <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900 line-clamp-2">
                     {article.title}
                 </h3>
 
-                <p className="text-gray-600 mb-6 line-clamp-3 text-lg leading-relaxed">
+                <p className="text-gray-600 mb-4 text-sm line-clamp-2 leading-relaxed">
                     {article.excerpt}
                 </p>
 
-                <div className="flex flex-wrap items-center gap-6 mt-auto">
+                <div className="flex items-center gap-4">
                     <button
-                        className={`flex items-center gap-2 hover:scale-110 transition-all ${article.isLiked ? 'text-red-500' : 'text-gray-600'}`}
+                        className={`flex items-center gap-1 ${article.isLiked ? 'text-red-500' : 'text-gray-600'}`}
                         onClick={() => onLike(article.id)}
                     >
-                        <Heart className={`${article.isLiked ? 'fill-current animate-pulse' : ''}`} size={22} />
-                        <span className="font-medium">{article.likes}</span>
+                        <Heart className={`${article.isLiked ? 'fill-current' : ''}`} size={18} />
+                        <span className="text-sm">{article.likes}</span>
                     </button>
 
                     <button
-                        className="flex items-center gap-2 text-gray-600 hover:scale-110 transition-all hover:text-[#006C5F]"
+                        className="flex items-center gap-1 text-gray-600"
                         onClick={() => onShare(article)}
                     >
-                        <Share2 size={22} />
+                        <Share2 size={18} />
                     </button>
                 </div>
-            </div>
-
-            <div className="md:w-1/3">
-                <MediaPreview article={article} onClick={() => onMediaSelect(article)} />
             </div>
         </div>
     );
 };
 
-// Composant MediaModal
+
+
+// Modal optimisé pour mobile
 const MediaModal = ({ selectedMedia, onClose }) => {
     if (!selectedMedia) return null;
 
@@ -115,32 +118,20 @@ const MediaModal = ({ selectedMedia, onClose }) => {
         return (match && match[7].length === 11) ? match[7] : false;
     };
 
-    const getPdfUrl = (url, isDownload = false) => {
-        if (url.includes('drive.google.com')) {
-            const fileId = url.match(/[-\w]{25,}/);
-            return fileId 
-                ? isDownload 
-                    ? `https://drive.google.com/uc?export=download&id=${fileId[0]}`
-                    : `https://drive.google.com/file/d/${fileId[0]}/preview`
-                : url;
-        }
-        return url;
-    };
-
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
-            <div className="absolute inset-0 bg-black bg-opacity-50" onClick={onClose} />
-            <div className="relative bg-white rounded-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-                <div className="flex justify-between items-center p-4 border-b">
-                    <h3 className="text-lg font-semibold">{selectedMedia.title}</h3>
-                    <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded-full">
-                        <X className="h-6 w-6" />
+            <div className="absolute inset-0 bg-black bg-opacity-75" onClick={onClose} />
+            <div className="relative bg-white w-full sm:w-auto sm:max-w-3xl mx-4 sm:mx-auto rounded-lg overflow-hidden">
+                <div className="flex justify-between items-center p-3 border-b">
+                    <h3 className="text-base font-semibold line-clamp-1">{selectedMedia.title}</h3>
+                    <button onClick={onClose} className="p-1">
+                        <X className="h-5 w-5" />
                     </button>
                 </div>
 
-                <div className="p-4">
+                <div className="relative">
                     {selectedMedia.mediaType === 'video' && (
-                        <div className="relative aspect-video bg-black rounded-lg overflow-hidden">
+                        <div className="relative pb-[56.25%]">
                             <iframe
                                 src={`https://www.youtube.com/embed/${getYouTubeVideoId(selectedMedia.mediaUrl)}`}
                                 title={selectedMedia.title}
@@ -150,35 +141,11 @@ const MediaModal = ({ selectedMedia, onClose }) => {
                         </div>
                     )}
                     {selectedMedia.mediaType === 'image' && (
-                        <div className="relative bg-gray-100 rounded-lg overflow-hidden">
-                            <img
-                                src={selectedMedia.mediaUrl}
-                                alt={selectedMedia.title}
-                                className="w-full h-auto max-h-[70vh] object-contain"
-                            />
-                        </div>
-                    )}
-                    {selectedMedia.mediaType === 'pdf' && (
-                        <div className="flex flex-col gap-4">
-                            <div className="w-full h-[70vh] rounded-lg overflow-hidden border border-gray-200">
-                                <iframe
-                                    src={getPdfUrl(selectedMedia.mediaUrl)}
-                                    title={selectedMedia.title}
-                                    className="w-full h-full"
-                                    allowFullScreen
-                                />
-                            </div>
-                            <div className="flex justify-center">
-                                <a
-                                    href={getPdfUrl(selectedMedia.mediaUrl, true)}
-                                    download={`${selectedMedia.title}.pdf`}
-                                    className="flex items-center gap-2 px-6 py-3 bg-[#006C5F] text-white rounded-lg hover:bg-[#004A42] transition-colors"
-                                >
-                                    <Download size={20} />
-                                    Télécharger le PDF
-                                </a>
-                            </div>
-                        </div>
+                        <img
+                            src={selectedMedia.mediaUrl}
+                            alt={selectedMedia.title}
+                            className="w-full h-auto max-h-[80vh] object-contain"
+                        />
                     )}
                 </div>
             </div>
@@ -189,43 +156,43 @@ const MediaModal = ({ selectedMedia, onClose }) => {
 
 const ScrollToTop = () => {
     const [isVisible, setIsVisible] = useState(false);
-  
+
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+        if (window.pageYOffset > 300) {
+            setIsVisible(true);
+        } else {
+            setIsVisible(false);
+        }
     };
-  
+
     const scrollToTop = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     };
-  
+
     useEffect(() => {
-      window.addEventListener("scroll", toggleVisibility);
-      return () => {
-        window.removeEventListener("scroll", toggleVisibility);
-      };
+        window.addEventListener("scroll", toggleVisibility);
+        return () => {
+            window.removeEventListener("scroll", toggleVisibility);
+        };
     }, []);
-  
+
     return (
-      <>
-        {isVisible && (
-          <button
-            onClick={scrollToTop}
-            className="fixed bottom-8 right-8 p-3 bg-[#006C5F] hover:bg-[#004A42] text-white rounded-full shadow-lg transition-all duration-300 z-50 transform hover:scale-110"
-            aria-label="Retour en haut"
-          >
-            <ChevronUp size={24} />
-          </button>
-        )}
-      </>
+        <>
+            {isVisible && (
+                <button
+                    onClick={scrollToTop}
+                    className="fixed bottom-8 right-8 p-3 bg-[#006C5F] hover:bg-[#004A42] text-white rounded-full shadow-lg transition-all duration-300 z-50 transform hover:scale-110"
+                    aria-label="Retour en haut"
+                >
+                    <ChevronUp size={24} />
+                </button>
+            )}
+        </>
     );
-  };
+};
 
 
 // Composant principal Home
@@ -429,46 +396,34 @@ const Home = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-[#006C5F] [&::-webkit-scrollbar-thumb]:rounded-full">
-            <ScrollToTop />
-            {/* Header */}
-            <header className="sticky top-0 backdrop-blur-lg bg-white/80 border-b border-gray-100 z-50">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="flex justify-between items-center py-4">
-                        <div className="flex items-center space-x-8">
-                            <div className="flex items-center">
-                                <img src={logo3} alt="Logo" className="h-16 w-auto" />
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-4">
-
-                            <button
-                                className="md:hidden"
-                                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            >
-                                <Menu size={24} />
-                            </button>
-                        </div>
+        <div className="min-h-screen bg-gray-50">
+            {/* Header optimisé */}
+            <header className="sticky top-0 bg-white/90 backdrop-blur-sm border-b border-gray-100 z-50">
+                <div className="max-w-7xl mx-auto px-4">
+                    <div className="flex justify-between items-center h-14">
+                        <img src={logo3} alt="Logo" className="h-10 w-auto" />
+                        <button className="p-2">
+                            <Menu size={20} />
+                        </button>
                     </div>
                 </div>
             </header>
 
-            {/* Hero Section */}
-            <div className="relative bg-gradient-to-r from-[#006C5F] to-[#004A42] text-white py-24">
-                <div className="absolute inset-0 bg-[url('/api/placeholder/1920/400')] mix-blend-overlay opacity-10"></div>
-                <div className="max-w-7xl mx-auto px-6 relative">
-                    <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            {/* Hero Section optimisé */}
+            <div className="relative bg-gradient-to-r from-[#006C5F] to-[#004A42] text-white py-12 sm:py-16">
+                <div className="max-w-7xl mx-auto px-4">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
                         Explorez notre<br />patrimoine spirituel
                     </h2>
-                    <p className="text-xl md:text-2xl text-white/90 max-w-2xl leading-relaxed">
+                    <p className="text-base sm:text-lg text-white/90 max-w-2xl leading-relaxed">
                         Découvrez des articles enrichissants sur l'histoire, les enseignements et la spiritualité de la communauté Layène.
                     </p>
                 </div>
             </div>
 
-            {/* Articles Grid */}
-            <div className="max-w-7xl mx-auto px-6 py-16">
-                <div className="space-y-12">
+            {/* Articles Grid optimisé */}
+            <div className="max-w-7xl mx-auto px-4 py-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {articles.map(article => (
                         <ArticleCard
                             key={article.id}
@@ -481,33 +436,23 @@ const Home = () => {
                 </div>
             </div>
 
-            {/* Footer */}
-            <footer className="bg-gray-50 border-t border-gray-200 py-8 md:py-12">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <div className="space-y-4">
-                            <div className="flex items-center">
-                                <img src={logo3} alt="Logo" className="h-22 w-auto" />
-                            </div>
-                            <p className="text-gray-500 text-sm">
-                                Votre source d'information sur la spiritualité et l'histoire Layène.
-                            </p>
+            {/* Footer optimisé */}
+            <footer className="bg-white border-t border-gray-200 py-6 mt-8">
+                <div className="max-w-7xl mx-auto px-4">
+                    <div className="flex flex-col items-center text-center">
+                        <img src={logo3} alt="Logo" className="h-16 w-auto mb-4" />
+                        <p className="text-gray-500 text-sm">
+                            Votre source d'information sur la spiritualité et l'histoire Layène.
+                        </p>
+                        <div className="mt-4 text-xs text-gray-400">
+                            © 2024 Farlu ci Diiné dji - Ohio Colombus
                         </div>
-                    </div>
-
-                    <div className="mt-8 pt-8 border-t border-gray-200 text-center md:text-left text-gray-500 text-sm">
-                        © 2024 Farlu ci Diiné dji - Ohio Colombus. Powered with 💚 & 🥤 by <a href="http://espacelayene.com">Espace Layène</a>.
                     </div>
                 </div>
             </footer>
 
             {/* Modals and Notifications */}
-            {selectedMedia && (
-                <MediaModal
-                    selectedMedia={selectedMedia}
-                    onClose={() => setSelectedMedia(null)}
-                />
-            )}
+            {selectedMedia && <MediaModal selectedMedia={selectedMedia} onClose={() => setSelectedMedia(null)} />}
             {showAlert && <Notification message={alertMessage} />}
         </div>
     );
