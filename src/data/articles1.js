@@ -9,14 +9,9 @@ export const articles1 = [
         category: "Histoire",
         likes: 156,
         isLiked: false,
-        media: [
-            {
-                type: "video",
-                url: "https://youtu.be/watch?v=CaPV1TIdtxk",
-                title: "Seydina Limamou Laye: L'histoire de la renaissance spirituelle",
-                thumbnailUrl: "https://img.youtube.com/vi/CaPV1TIdtxk/maxresdefault.jpg",
-            }
-        ],
+        mediaType: "video",
+        mediaUrl: "https://youtu.be/CaPV1TIdtxk",
+        thumbnailUrl: "https://img.youtube.com/vi/CaPV1TIdtxk/maxresdefault.jpg",
         slug: "seydina-limamou-laye-histoire-renaissance-spirituelle-1",
         content: `
             <h2>La Renaissance Spirituelle</h2>
@@ -34,17 +29,12 @@ export const articles1 = [
         author: "Cheikh Thierno Laye",
         publishDate: "2024-12-23T15:45:00",
         readTime: "12 min",
-        category: "Enseignements",
+        category: "Spiritualité",
         likes: 243,
         isLiked: false,
-        media: [
-            {
-                type: "image",
-                url: "https://res.cloudinary.com/dgro5x4h8/image/upload/v1730646094/5888_itihw3.png",
-                title: "Illustration des enseignements",
-                thumbnailUrl: "https://res.cloudinary.com/dgro5x4h8/image/upload/v1730646094/5888_itihw3.png",
-            }
-        ],
+        mediaType: "image",
+        mediaUrl: "https://res.cloudinary.com/dgro5x4h8/image/upload/v1730646094/5888_itihw3.png",
+        thumbnailUrl: "https://res.cloudinary.com/dgro5x4h8/image/upload/v1730646094/5888_itihw3.png",
         slug: "enseignements-fondamentaux-mahdi",
         content: `
             <h2>Les Principes du Mahdi</h2>
@@ -63,14 +53,9 @@ export const articles1 = [
         category: "Actualités",
         likes: 89,
         isLiked: false,
-        media: [
-            {
-                type: "pdf",
-                url: "https://drive.google.com/file/d/1adLS89hzwtBF6X2SDScqFt50SCWjZXXU/view?usp=sharing",
-                title: "Document PDF sur la communauté",
-                thumbnailUrl: "/api/placeholder/400/320",
-            }
-        ],
+        mediaType: "pdf",
+        mediaUrl: "https://drive.google.com/file/d/1adLS89hzwtBF6X2SDScqFt50SCWjZXXU/view?usp=sharing",
+        thumbnailUrl: "/api/placeholder/400/320",
         slug: "communaute-layene-aujourd-hui",
         content: `
             <h2>Les Défis Contemporains</h2>
@@ -79,6 +64,7 @@ export const articles1 = [
             <p>Avec une foi profonde et des valeurs bien ancrées, la communauté reste résiliente...</p>
         `
     },
+    // Ajout des champs `content` pour les articles 4 à 10
     {
         id: 4,
         title: "Conférence Cherif Ousseynou LAHI 2005 OHIO",
@@ -89,14 +75,9 @@ export const articles1 = [
         category: "Histoire",
         likes: 150,
         isLiked: false,
-        media: [
-            {
-                type: "video",
-                url: "https://youtu.be/watch?v=82MGLXcuUrQ",
-                title: "Conférence à Ohio en 2005",
-                thumbnailUrl: "https://img.youtube.com/vi/82MGLXcuUrQ/maxresdefault.jpg",
-            }
-        ],
+        mediaType: "video",
+        mediaUrl: "https://youtu.be/82MGLXcuUrQ",
+        thumbnailUrl: "https://img.youtube.com/vi/82MGLXcuUrQ/maxresdefault.jpg",
         slug: "conference-cherif-ousseynou-lahi-2005-ohio",
         content: `
             <h2>Un Événement Marquant</h2>
@@ -115,14 +96,9 @@ export const articles1 = [
         category: "Histoire",
         likes: 200,
         isLiked: false,
-        media: [
-            {
-                type: "video",
-                url: "https://www.youtube.com/watch?v=IxvfcYMY_5g",
-                title: "Témoignages sur Chérif Ousseynou Lahi",
-                thumbnailUrl: "https://img.youtube.com/vi/IxvfcYMY_5g/maxresdefault.jpg",
-            }
-        ],
+        mediaType: "video",
+        mediaUrl: "https://youtu.be/IxvfcYMY_5g",
+        thumbnailUrl: "https://img.youtube.com/vi/IxvfcYMY_5g/maxresdefault.jpg",
         slug: "temoignages-cherif-ousseynou-lahi",
         content: `
             <h2>Les Témoignages</h2>
@@ -133,25 +109,62 @@ export const articles1 = [
     },
     {
         id: 6,
-        title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
-        excerpt: "Un regard sur l'évolution et l'état actuel de la communauté Layène...",
-        author: "Abdoulaye Diene",
-        publishDate: "2024-12-22T09:15:00",
-        readTime: "6 min",
-        category: "Actualités",
-        likes: 8,
+        title: "Les 10 enseignements les plus puissants du Mahdi",
+        excerpt: "Revisitez les enseignements clés pour comprendre le message du Mahdi...",
+        author: "Cheikh Ahmadou Bamba",
+        publishDate: "2024-12-20T12:00:00",
+        readTime: "10 min",
+        category: "Spiritualité",
+        likes: 302,
         isLiked: false,
-        media: [
-            {
-                type: "pdf",
-                url: "https://drive.google.com/file/d/1ireP5QEyd5hGUHZ9s4pNSzOGQ5MlrkDE/view?usp=sharing",
-                title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
-                thumbnailUrl: "",
-            }
-        ],
-        slug: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
+        mediaType: "image",
+        mediaUrl: "https://res.cloudinary.com/dgro5x4h8/image/upload/v1730646094/example.png",
+        thumbnailUrl: "https://res.cloudinary.com/dgro5x4h8/image/upload/v1730646094/example.png",
+        slug: "enseignements-puissants-mahdi",
         content: `
-            <h2>Les Défis Contemporains</h2>
-            <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
-    }
+            <h2>Une Sagesse Intemporelle</h2>
+            <p>Les enseignements du Mahdi restent pertinents pour relever les défis contemporains...</p>
+        `
+    },
+    {
+    id: 7,
+    title: "La communauté Layène aujourd'hui",
+    excerpt: "Un regard sur l'évolution et l'état actuel de la communauté Layène...",
+    author: "Abdoulaye Diene",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Actualités",
+    likes: 89,
+    isLiked: false,
+    mediaType: "pdf",
+    mediaUrl: "https://drive.google.com/file/d/1adLS89hzwtBF6X2SDScqFt50SCWjZXXU/view?usp=sharing",
+    thumbnailUrl: "/api/placeholder/400/320",
+    slug: "communaute-layene-aujourd-hui",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>
+        <h2>Un Héritage Solide</h2>
+        <p>Avec une foi profonde et des valeurs bien ancrées, la communauté reste résiliente...</p>
+    `
+},
+{
+    id: 8,
+    title: " Là Nabi Bahdî ",
+    excerpt: "Un sceau est une empreinte destinée par quintessence à marquer, à garantir...",
+    author: "Farlu ci Diine ji",
+    publishDate: "2024-12-20T12:00:00",
+    readTime: "10 min",
+    category: "Enseigments",
+    likes: 302,
+    isLiked: false,
+    mediaType: "pdf",
+    mediaUrl: "https://drive.google.com/file/d/1DEEgb4745SWumMOG9Kzi8mUvIteN0LJS/view?usp=sharing",
+    thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+    slug: "Là Nabi Bahdî",
+    content: `
+        <h2>Une Sagesse Intemporelle</h2>
+        <p>Les enseignements du Mahdi restent pertinents pour relever les défis contemporains...</p>
+    `
+},
+    // Continuer pour les articles 7 à 10...
 ];
