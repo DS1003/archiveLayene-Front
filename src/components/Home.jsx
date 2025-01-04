@@ -79,20 +79,39 @@ const Notification = ({ message }) => (
 // Composant MediaPreview
 // Composant MediaPreview modifié
 const MediaPreview = ({ article, onClick }) => {
-    // Fonction pour vérifier si l'image est valide
-    const isValidThumbnail = (url) => {
-        if (!url) return false;
-        if (url.includes('maxresdefault.jpg')) {
-            // Vérifier si l'image YouTube existe
-            const img = new Image();
-            img.src = url;
-            return img.complete && img.naturalHeight !== 0;
+    // Obtenir le bon thumbnail pour l'article
+    const getThumbnail = () => {
+        // Si l'article a plusieurs médias, prendre le thumbnailUrl du premier média
+        if (Array.isArray(article.media) && article.media.length > 0) {
+            const firstMedia = article.media[0];
+            return firstMedia.thumbnailUrl || firstMedia.url || defaultThumbnail;
         }
-        return true;
+        // Si c'est un seul média
+        if (article.media && typeof article.media === 'object') {
+            return article.media.thumbnailUrl || article.media.url || defaultThumbnail;
+        }
+        // Fallback sur le defaultThumbnail
+        return defaultThumbnail;
     };
 
-    // Utilisez la thumbnail
-    const thumbnailUrl = isValidThumbnail(article.media.thumbnailUrl) ? article.media.thumbnailUrl : defaultThumbnail;
+    // État pour gérer les erreurs de chargement d'image
+    const [imgSrc, setImgSrc] = useState(getThumbnail());
+
+    // Gestionnaire d'erreur d'image
+    const handleImageError = () => {
+        if (imgSrc !== defaultThumbnail) {
+            setImgSrc(defaultThumbnail);
+        }
+    };
+
+    const getMediaType = () => {
+        if (Array.isArray(article.media) && article.media.length > 0) {
+            return article.media[0].type;
+        }
+        return article.media?.type || 'unknown';
+    };
+
+    const mediaType = getMediaType();
 
     return (
         <div
@@ -100,30 +119,23 @@ const MediaPreview = ({ article, onClick }) => {
             onClick={onClick}
         >
             <img
-                src={thumbnailUrl}
+                src={imgSrc}
                 alt={article.title}
                 className="w-full h-48 sm:h-56 md:h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                onError={(e) => {
-                    e.target.src = defaultThumbnail;
-                }}
+                onError={handleImageError}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                {article.mediaType === 'video' && (
-                    <Play size={32} className="text-white" />
-                )}
-                {article.mediaType === 'image' && (
-                    <ImageIcon size={32} className="text-white" />
-                )}
-                {article.mediaType === 'pdf' && (
-                    <FileText size={32} className="text-white" />
-                )}
+                {mediaType === 'video' && <Play size={32} className="text-white" />}
+                {mediaType === 'image' && <ImageIcon size={32} className="text-white" />}
+                {mediaType === 'pdf' && <FileText size={32} className="text-white" />}
             </div>
             <span className="absolute top-2 right-2 px-2 py-1 bg-white/90 text-xs font-medium rounded-full backdrop-blur-sm capitalize">
-                {article.mediaType}
+                {mediaType}
             </span>
         </div>
     );
 };
+
 
 
 // Composant ArticleCard

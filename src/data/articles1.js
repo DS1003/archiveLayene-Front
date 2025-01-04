@@ -153,5 +153,29 @@ export const articles1 = [
         content: `
             <h2>Les Défis Contemporains</h2>
             <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
-    }
+    },
+    {
+        id: 9,
+        title: "Vocabulaire Wolof",
+        excerpt: "Un regard sur l'évolution et l'état actuel de la communauté Layène...",
+        author: "Farlu Ci Diné",
+        publishDate: "2024-12-22T09:15:00",
+        readTime: "6 min",
+        category: "Enseignements",
+        likes: 102,
+        isLiked: false,
+        media: [
+            {
+                type: "pdf",
+                url: "https://drive.google.com/file/d/1fxN3mV0cwPUXvC7PJ_eIThVSmU27QvzX/view?usp=sharing",
+                title: "Vocabulaire Wolof",
+                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+            }
+        ],
+        slug: "Vocabulaire Wolof",
+        content: `
+            <h2>Les Défis Contemporains</h2>
+            <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+    },
+
 ];
