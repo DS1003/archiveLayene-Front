@@ -14,7 +14,7 @@ export const articles1 = [
                 type: "video",
                 url: "https://youtu.be/watch?v=CaPV1TIdtxk",
                 title: "Seydina Limamou Laye: L'histoire de la renaissance spirituelle",
-                thumbnailUrl: "https://img.youtube.com/vi/CaPV1TIdtxk/maxresdefault.jpg",
+                thumbnailUrl: "https://drive.google.com/file/d/1XX4c4hCzT7AHILa39TpJdfxJIm5KZAh5/view?usp=sharing",
             },
             {
                 type: "image",
@@ -44,7 +44,7 @@ export const articles1 = [
         author: "Cheikh Thierno Laye",
         publishDate: "2024-12-23T15:45:00",
         readTime: "12 min",
-        category: "Spiritualité",
+        category: "Enseignements",
         likes: 243,
         isLiked: false,
         media: [
@@ -148,7 +148,7 @@ export const articles1 = [
         author: "Cheikh Ahmadou Bamba",
         publishDate: "2024-12-20T12:00:00",
         readTime: "10 min",
-        category: "Spiritualité",
+        category: "Enseignements",
         likes: 302,
         isLiked: false,
         media: [
@@ -165,4 +165,27 @@ export const articles1 = [
             <p>Les enseignements du Mahdi restent pertinents pour relever les défis contemporains...</p>
         `
     },
+    {
+        id: 7,
+        title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
+        excerpt: "Un regard sur l'évolution et l'état actuel de la communauté Layène...",
+        author: "Abdoulaye Diene",
+        publishDate: "2024-12-22T09:15:00",
+        readTime: "6 min",
+        category: "Actualités",
+        likes: 8,
+        isLiked: false,
+        media: [
+            {
+                type: "audio",
+                url: "https://drive.google.com/file/d/1ireP5QEyd5hGUHZ9s4pNSzOGQ5MlrkDE/view?usp=sharing",
+                title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
+                thumbnailUrl: "",
+            }
+        ],
+        slug: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
+        content: `
+            <h2>Les Défis Contemporains</h2>
+            <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+    }
 ];
