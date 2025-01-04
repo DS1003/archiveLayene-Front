@@ -15,16 +15,6 @@ export const articles1 = [
                 url: "https://youtu.be/watch?v=CaPV1TIdtxk",
                 title: "Seydina Limamou Laye: L'histoire de la renaissance spirituelle",
                 thumbnailUrl: "https://drive.google.com/file/d/1XX4c4hCzT7AHILa39TpJdfxJIm5KZAh5/view?usp=sharing",
-            },
-            {
-                type: "image",
-                url: "https://example.com/image.jpg",
-                title: "Photo historique",
-            },
-            {
-                type: "audio",
-                url: "https://example.com/audio.mp3",
-                title: "Enregistrement audio",
             }
         ],
         slug: "seydina-limamou-laye-histoire-renaissance-spirituelle-1",
@@ -143,30 +133,6 @@ export const articles1 = [
     },
     {
         id: 6,
-        title: "Les 10 enseignements les plus puissants du Mahdi",
-        excerpt: "Revisitez les enseignements clés pour comprendre le message du Mahdi...",
-        author: "Cheikh Ahmadou Bamba",
-        publishDate: "2024-12-20T12:00:00",
-        readTime: "10 min",
-        category: "Enseignements",
-        likes: 302,
-        isLiked: false,
-        media: [
-            {
-                type: "audio",
-                url: "https://res.cloudinary.com/dgro5x4h8/video/upload/v1736017977/WhatsApp_Audio_2024-12-24_at_03.00.54_su7pao.m4a",
-                title: "Enseignements du Mahdi",
-                thumbnailUrl: "https://res.cloudinary.com/dgro5x4h8/image/upload/v1730646094/example.png",
-            }
-        ],
-        slug: "enseignements-puissants-mahdi",
-        content: `
-            <h2>Une Sagesse Intemporelle</h2>
-            <p>Les enseignements du Mahdi restent pertinents pour relever les défis contemporains...</p>
-        `
-    },
-    {
-        id: 7,
         title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
         excerpt: "Un regard sur l'évolution et l'état actuel de la communauté Layène...",
         author: "Abdoulaye Diene",
@@ -177,7 +143,7 @@ export const articles1 = [
         isLiked: false,
         media: [
             {
-                type: "audio",
+                type: "pdf",
                 url: "https://drive.google.com/file/d/1ireP5QEyd5hGUHZ9s4pNSzOGQ5MlrkDE/view?usp=sharing",
                 title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
                 thumbnailUrl: "",
