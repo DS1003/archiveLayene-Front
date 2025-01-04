@@ -91,8 +91,8 @@ const MediaPreview = ({ article, onClick }) => {
         return true;
     };
 
-    // Utilisez l'image par défaut si la thumbnail n'est pas valide
-    const thumbnailUrl = isValidThumbnail(article.thumbnailUrl) ? article.thumbnailUrl : defaultThumbnail;
+    // Utilisez la thumbnail
+    const thumbnailUrl = isValidThumbnail(article.media.thumbnailUrl) ? article.media.thumbnailUrl : defaultThumbnail;
 
     return (
         <div
@@ -421,7 +421,7 @@ const Home = () => {
                             Votre source d'information sur la spiritualité et l'histoire Layène.
                         </p>
                         <div className="mt-4 text-xs text-gray-400">
-                            © 2024 Farlu ci Diiné dji - Ohio Colombus
+                            © 2024 Farlu ci Diiné dji - Ohio Colombus. Powered By Espace Layène !
                         </div>
                     </div>
                 </div>

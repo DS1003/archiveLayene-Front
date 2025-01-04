@@ -14,7 +14,7 @@ export const articles1 = [
                 type: "video",
                 url: "https://youtu.be/watch?v=CaPV1TIdtxk",
                 title: "Seydina Limamou Laye: L'histoire de la renaissance spirituelle",
-                thumbnailUrl: "https://drive.google.com/file/d/1XX4c4hCzT7AHILa39TpJdfxJIm5KZAh5/view?usp=sharing",
+                thumbnailUrl: "https://img.youtube.com/vi/CaPV1TIdtxk/maxresdefault.jpg",
             }
         ],
         slug: "seydina-limamou-laye-histoire-renaissance-spirituelle-1",
