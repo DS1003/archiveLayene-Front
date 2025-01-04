@@ -146,14 +146,53 @@ const NavigationBar = ({ activeTab, onTabChange, isDarkMode, toggleTheme, onLogo
 
 // File Preview Component
 const FilePreview = ({ file, isDarkMode }) => {
+  const [error, setError] = useState(false);
+  const [isYoutubeVideo, setIsYoutubeVideo] = useState(false);
+  const [youtubeId, setYoutubeId] = useState(null);
+
+  useEffect(() => {
+    if (file?.url) {
+      // Check if URL is a YouTube URL
+      const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
+      const isYoutube = youtubeRegex.test(file.url);
+      setIsYoutubeVideo(isYoutube);
+
+      if (isYoutube) {
+        // Extract YouTube video ID
+        let id = '';
+        if (file.url.includes('youtu.be')) {
+          id = file.url.split('/').pop();
+        } else {
+          const urlParams = new URLSearchParams(new URL(file.url).search);
+          id = urlParams.get('v');
+        }
+        setYoutubeId(id);
+      }
+    }
+  }, [file?.url]);
+
   const renderPreview = () => {
-    if (!file || !file.url) return null
+    if (!file?.url) {
+      return (
+        <div className={`w-full h-40 ${isDarkMode ? 'bg-neutral-800' : 'bg-gray-100'} flex items-center justify-center rounded-lg`}>
+          <span className={`text-sm ${isDarkMode ? 'text-neutral-400' : 'text-neutral-500'}`}>
+            No preview available
+          </span>
+        </div>
+      );
+    }
 
-    const fileType = file.type || ''
-    const mainType = fileType.split('/')[0]
-    const subType = fileType.split('/')[1]
+    const fileType = file.type || '';
+    const mainType = fileType.split('/')[0];
+    const FileIcon = FileTypeIcons[mainType] || FileTypeIcons['default'];
 
-    const FileIcon = FileTypeIcons[mainType] || FileTypeIcons[`${mainType}/${subType}`] || FileTypeIcons['default']
+    if (error) {
+      return (
+        <div className={`w-full h-40 ${isDarkMode ? 'bg-neutral-800' : 'bg-gray-100'} flex items-center justify-center rounded-lg`}>
+          <FileIcon className={`w-16 h-16 ${isDarkMode ? 'text-neutral-400' : 'text-neutral-500'}`} />
+        </div>
+      );
+    }
 
     switch (mainType) {
       case 'image':
@@ -161,52 +200,72 @@ const FilePreview = ({ file, isDarkMode }) => {
           <div className={`w-full h-40 overflow-hidden rounded-lg ${isDarkMode ? 'bg-neutral-800' : 'bg-gray-100'} flex items-center justify-center`}>
             <img 
               src={file.url} 
-              alt={file.name} 
-              onError={(e) => {
-                e.target.style.display = 'none'
-                e.target.parentNode.innerHTML = `
-                  <div class="w-full h-full flex items-center justify-center ${isDarkMode ? 'text-neutral-400' : 'text-neutral-500'}">
-                    Image cannot be previewed
-                  </div>
-                `
-              }}
+              alt={file.name}
+              onError={() => setError(true)}
               className="w-full h-full object-cover hover:scale-110 transition-transform"
+              crossOrigin="anonymous" // Add this for external images
             />
           </div>
-        )
+        );
       
       case 'video':
+        if (isYoutubeVideo && youtubeId) {
+          return (
+            <div className="w-full h-40 overflow-hidden rounded-lg">
+              <iframe
+                src={`https://www.youtube.com/embed/${youtubeId}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+                onError={() => setError(true)}
+              />
+            </div>
+          );
+        }
         return (
           <video 
-            src={file.url} 
-            controls 
+            src={file.url}
+            controls
             className={`w-full h-40 rounded-lg ${isDarkMode ? 'bg-neutral-900' : 'bg-black'}`}
-            onError={(e) => {
-              e.target.style.display = 'none'
-              e.target.parentNode.innerHTML = `
-                <div class="w-full h-40 flex items-center justify-center ${isDarkMode ? 'text-neutral-400' : 'text-neutral-500'}">
-                  Video cannot be previewed
-                </div>
-              `
-            }}
-          />
-        )
+            onError={() => setError(true)}
+            crossOrigin="anonymous" // Add this for external videos
+          >
+            <source src={file.url} type={file.type} />
+            Your browser does not support the video tag.
+          </video>
+        );
+      
+      case 'audio':
+        return (
+          <div className={`w-full h-40 ${isDarkMode ? 'bg-neutral-800' : 'bg-gray-100'} flex flex-col items-center justify-center rounded-lg p-4`}>
+            <FileIcon className={`w-16 h-16 mb-2 ${isDarkMode ? 'text-neutral-400' : 'text-neutral-500'}`} />
+            <audio 
+              controls
+              className="w-full mt-2"
+              onError={() => setError(true)}
+              crossOrigin="anonymous" // Add this for external audio
+            >
+              <source src={file.url} type={file.type} />
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        );
       
       default:
         return (
           <div className={`w-full h-40 ${isDarkMode ? 'bg-neutral-800' : 'bg-gray-100'} flex items-center justify-center rounded-lg`}>
             <FileIcon className={`w-16 h-16 ${isDarkMode ? 'text-neutral-400' : 'text-neutral-500'}`} />
           </div>
-        )
+        );
     }
-  }
+  };
 
   return (
     <div className="w-full h-40 mb-3">
       {renderPreview()}
     </div>
-  )
-}
+  );
+};
 
 // File Card Component
 const FileCard = ({ file, onEdit, onDelete, onCopy, isDarkMode }) => {

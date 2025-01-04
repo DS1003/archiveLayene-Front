@@ -8,9 +8,8 @@ import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { useNavigate, useParams } from 'react-router-dom';
 import { articles1 } from '../data/articles1';
-import defaultThumbnail from "../assets/logo3.png";
-import PDFViewer from './PdfViewer'; // Importez le nouveau PDFViewer
-import GoogleDrivePDFViewer from './GoogleDrivePDFViewer';
+import MediaDisplay from './MediaDisplay';
+import MediaCollection from './MediaCollection';
 
 const Notification = ({ message }) => (
     <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 z-50 bg-white shadow-lg rounded-lg py-2 px-3 flex items-center gap-2 border border-green-100 text-green-800 text-sm">
@@ -26,8 +25,6 @@ const ArticlePage = () => {
     const [isLiked, setIsLiked] = useState(false);
     const [showNotification, setShowNotification] = useState(false);
     const [notificationMessage, setNotificationMessage] = useState('');
-
-    const isPDFGoogleDrive = article?.mediaUrl?.includes('drive.google.com');
 
     useEffect(() => {
         const foundArticle = articles1.find(a => a.slug === slug);
@@ -155,15 +152,7 @@ const ArticlePage = () => {
                 </div>
 
                 {/* Conditional Media Content */}
-                {article.mediaType === 'pdf' && (
-                    <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-                        {isPDFGoogleDrive ? (
-                            <GoogleDrivePDFViewer url={article.mediaUrl} />
-                        ) : (
-                            <PDFViewer url={article.mediaUrl} />
-                        )}
-                    </div>
-                )}
+                <MediaCollection mediaItems={article.media} />
 
                 {/* Action Buttons */}
                 <div className="flex items-center justify-center gap-4 py-6">
