@@ -6,7 +6,7 @@ export const articles1 = [
         author: "Cherif Sidy Laye",
         publishDate: "2024-12-24T10:30:00",
         readTime: "8 min",
-        category: "Histoire",
+        category: "Archives",
         likes: 156,
         isLiked: false,
         media: [
@@ -86,7 +86,7 @@ export const articles1 = [
         author: "Farlu Ci Diné ji",
         publishDate: "2024-12-24T11:00:00",
         readTime: "8 min",
-        category: "Histoire",
+        category: "Archives",
         likes: 150,
         isLiked: false,
         media: [
@@ -112,7 +112,7 @@ export const articles1 = [
         author: "Farlu Ci Diné ji",
         publishDate: "2024-12-25T10:30:00",
         readTime: "8 min",
-        category: "Histoire",
+        category: "Archives",
         likes: 200,
         isLiked: false,
         media: [
@@ -424,13 +424,13 @@ export const articles1 = [
     author: "Farlu Ci Diné ji",
     publishDate: "2024-12-22T09:15:00",
     readTime: "6 min",
-    category: "Histoire",
+    category: "Archives",
     likes: 102,
     isLiked: false,
     media: [
         {
-            type: "vidéo",
-            url: "https://youtu.be/4q6ZdCRf2ls?feature=shared",
+            type: "video",
+            url: "https://www.youtube.com/watch?v=4q6ZdCRf2ls",
             title: "CONFERANCE DE CHERIF OUSSEYNOU LAHI (RAT) A YEUMBEUL",
             thumbnailUrl: "https://img.youtube.com/vi/4q6ZdCRf2ls/maxresdefault.jpg",
         }
@@ -448,18 +448,110 @@ export const articles1 = [
     author: "Farlu Ci Diné ji",
     publishDate: "2024-12-22T09:15:00",
     readTime: "6 min",
-    category: "Histoire",
+    category: "Archives",
     likes: 102,
     isLiked: false,
     media: [
         {
-            type: "vidéo",
-            url: "https://youtu.be/jBupEpDXw2Q?feature=shared",
+            type: "video",
+            url: "https://www.youtube.com/watch?v=jBupEpDXw2Q",
             title: "FILM DOCUMENTAIRE SUR LA VIE ET OEUVRE DE CHERIF OUSSEYNOU LAYE DE 1945 2009",
             thumbnailUrl: "https://img.youtube.com/vi/jBupEpDXw2Q/maxresdefault.jpg",
         }
     ],
     slug: "FILM DOCUMENTAIRE SUR LA VIE ET OEUVRE DE CHERIF OUSSEYNOU LAYE DE 1945 2009",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+{
+    id: 21,
+    title: "Conférence cherif Ousseynou LAHI Paris 2008",
+    excerpt: "Cherif Sa leer dou faye",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Archives",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "video",
+            url: "https://www.youtube.com/watch?v=CG13Jz6_Y0s",
+            title: "Conférence cherif Ousseynou LAHI Paris 2008",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736174919/Capture_d_%C3%A9cran_138_yrt5hy.png",
+        }
+    ],
+    slug: "Conférence cherif Ousseynou LAHI Paris 2008",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+{
+    id: 22,
+    title: "CHERIF OUSSEYNOU APPEL SEYDINA LIMAMOU LAHI (PSL) A NEW YORK",
+    excerpt: "Cherif Sa lerr dou faye",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Archives",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "video",
+            url: "https://www.youtube.com/watch?v=OV43RzV48zk",
+            title: "CHERIF OUSSEYNOU LAPPEL SEYDINA LIMAMOU LAHI (PSL) A NEW YORK",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736175486/Capture_d_%C3%A9cran_139_sujufs.png",
+        }
+    ],
+    slug: "CHERIF OUSSEYNOU LAYE (EXTRAIT )APPEL SEYDINA LIMAMOU LAHI (PSL) A NEW YORK",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+{
+    id: 23,
+    title: "DIOULI KORITE 2005 DIRIGE PAR CHERIF OUSSEYNOU LAHI",
+    excerpt: "Cherif Sa lerr dou faye",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Archives",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "video",
+            url: "https://www.youtube.com/watch?v=0Hoeu3E5iJU",
+            title: "DIOULI KORITE 2005 DIRIGE PAR CHERIF OUSSEYNOU LAHI",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736177204/Capture_d_%C3%A9cran_140_v0ayfh.png",
+        }
+    ],
+    slug: "DIOULI KORITE 2005 DIRIGE PAR CHERIF OUSSEYNOU LAHI",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+{
+    id: 24,
+    title: "WAXTAN BOU AM SOLO LA VALEUR DES FEMMES PAR CHERIF OUSSEYNOU LAYE",
+    excerpt: "Cherif Sa lerr dou faye",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Archives",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "video",
+            url: "https://www.youtube.com/watch?v=YtkRp2VySgw",
+            title: "WAXTAN BOU AM SOLO LA VALEUR DES FEMMES PAR CHERIF OUSSEYNOU LAYE",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736177798/Capture_d_%C3%A9cran_141_zikihq.png",
+        }
+    ],
+    slug: "WAXTAN BOU AM SOLO LA VALEUR DES FEMMES PAR CHERIF OUSSEYNOU LAYE",
     content: `
         <h2>Les Défis Contemporains</h2>
         <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
