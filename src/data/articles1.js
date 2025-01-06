@@ -722,6 +722,132 @@ export const articles1 = [
         <h2>Les Défis Contemporains</h2>
         <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
 },
+{
+    id: 32,
+    title: "Housnoul Jawab Français",
+    excerpt: "zikr pdf",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Poèmes",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1iSMumAc3H_mo83TS25Vg4FSASlt1z4bT/view?usp=sharing",
+            title: "Housnoul Jawab Français",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736194745/les_poeme_jjaqz6.png",
+        }
+    ],
+    slug: "Housnoul Jawab Français",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+
+{
+    id: 33,
+    title: "Badatu bi bismillahi",
+    excerpt: "zikr pdf",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Poèmes",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1uUVmy53i50mkkvs07FChRqJNVqnoqTlv/view?usp=sharing",
+            title: "Badatu bi bismillahi",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736194745/les_poeme_jjaqz6.png",
+        }
+    ],
+    slug: "Badatu bi bismillahi",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+{
+    id: 34,
+    title: "Ndawal Yalla...",
+    excerpt: "Ecrit par Oustaz Bara le jeune poéte ",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Zikr",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "audio",
+            url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736024372/_Ndawal_Yalla____E%CC%81crit_par_Mamadou_Bara_Samb__esry1g.mp3",
+            title: "Ndawal Yalla...",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736027553/ziky_bbgx3j.png",
+        }
+    ],
+    slug: "Ndawal Yalla...",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+{
+    id: 35,
+    title: "Bismilahi...",
+    excerpt: "Libasse Mbengue",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Zikr",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "audio",
+            url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736024368/WhatsApp_Audio_2024-12-25_at_22.45.08_e2edp7.mp3",
+            title: "Bismilahi...",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736027553/ziky_bbgx3j.png",
+        }
+    ],
+    slug: "Bismilahi...",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+{
+    id: 36,
+    title: "Xarixu",
+    excerpt: "Mamadou Mboup Xarixu ",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Zikr",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "audio",
+            url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736024340/Xarixu_pxbfkr.mp3",
+            title: "Ndawal Yalla...",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736027553/ziky_bbgx3j.png",
+        }
+    ],
+    slug: "Xarixu",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+
+
+
+
+
+
+
 
 
 
