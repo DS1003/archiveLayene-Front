@@ -168,7 +168,7 @@ export const articles1 = [
             {
                 type: "pdf",
                 url: "https://drive.google.com/file/d/1DEEgb4745SWumMOG9Kzi8mUvIteN0LJS/view?usp=sharing",
-                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736181909/Diangal%C3%A8_kfgyei.png",
             }
         ],
         slug: "Là Nabi Bahdî",
@@ -192,7 +192,7 @@ export const articles1 = [
                 type: "pdf",
                 url: "https://drive.google.com/file/d/1fxN3mV0cwPUXvC7PJ_eIThVSmU27QvzX/view?usp=sharing",
                 title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
-                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736181909/Diangal%C3%A8_kfgyei.png",
             }
         ],
         slug: "Vocabulaire Wolof",
@@ -215,7 +215,7 @@ export const articles1 = [
                 type: "pdf",
                 url: "https://drive.google.com/file/d/1wSqJ5uI3S-mF8hPgy9qLZ-2AaszhwJoW/view?usp=sharing",
                 title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
-                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736181909/Diangal%C3%A8_kfgyei.png",
             }
         ],
         slug: "LAXDARIYU",
@@ -286,7 +286,7 @@ export const articles1 = [
             type: "pdf",
             url: "https://drive.google.com/file/d/1gS909YdVCDqvj3l-TIvcHdqbmKwpXuTW/view?usp=sharing",
             title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
-            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736181909/Diangal%C3%A8_kfgyei.png",
         }
     ],
     slug: "Sourate 87 Le retour du prophete Mouhamad As.pdf",
@@ -310,7 +310,7 @@ export const articles1 = [
             type: "pdf",
             url: "https://drive.google.com/file/d/1GaOMG5UIscfrVaWBSbF0_-6xN1hdu0Tm/view?usp=sharing",
             title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
-            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736181909/Diangal%C3%A8_kfgyei.png",
         }
     ],
     slug: "Salaatou_Alaa_Nabi",
@@ -335,7 +335,7 @@ export const articles1 = [
             type: "pdf",
             url: "https://drive.google.com/file/d/1bJtL_raH8mxEp2Gjfwy9XGLUVp53zu4k/view?usp=sharing",
             title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
-            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736181909/Diangal%C3%A8_kfgyei.png",
         }
     ],
     slug: "les_prophétes_seydina_limamou_le_mahdi_et_seydina_issa",
@@ -359,7 +359,7 @@ export const articles1 = [
             type: "pdf",
             url: "https://drive.google.com/file/d/1JjND_-EUW5AIk0xs-tG6Adw_HpSUTWZ3/view?usp=sharing",
             title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
-            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736181909/Diangal%C3%A8_kfgyei.png",
         }
     ],
     slug: "Quran-Wolof",
@@ -383,7 +383,8 @@ export const articles1 = [
             type: "pdf",
             url: "https://drive.google.com/file/d/1Rtp9HU4vygw8l9N_cldUozPfNtXUc1__/view?usp=sharing",
             title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
-            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736181909/Diangal%C3%A8_kfgyei.png",
+            // ",
         }
     ],
     slug: "Wolof Grammar",
@@ -556,6 +557,176 @@ export const articles1 = [
         <h2>Les Défis Contemporains</h2>
         <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
 },
+{
+    id: 25,
+    title: "Les Sermons de Seydina Limamou & Seydina Issa pse",
+    excerpt: "xutba Français",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Les Sermons",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1VZVr56LRYGg4CuQnvRrpRVyD0oKcclhm/view?usp=sharing",
+            title: "Les Sermons de Seydina Limamou & Seydina Issa pse",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736192115/xutba_francais_lsolwf.png",
+        }
+    ],
+    slug: "Les Sermons de Seydina Limamou & Seydina Issa pse",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+{
+    id: 26,
+    title: "Les Sermons de Seydina Limamou & Seydina Issa pse",
+    excerpt: "xutba Arabe",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Les Sermons",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1MdLye4PE0wdpvImY66HJD3jgw-nsj00E/view?usp=sharing",
+            title: "Les Sermons de Seydina Limamou & Seydina Issa pse",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736192848/xutba_arabe_m7okyl.png",
+        }
+    ],
+    slug: "Les Sermons de Seydina Limamou & Seydina Issa pse",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+{
+    id: 27,
+    title: "Les Sermons de Seydina Limamou Psl",
+    excerpt: "xutba Wolof",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Les Sermons",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1alTK8bYf6Pvqzf_vbQzahe3M8CJ9m9b1/view?usp=sharing",
+            title: "Les Sermons de Seydina Limamou psl",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736193651/Xubta45_drfwlk.png",
+        }
+    ],
+    slug: "Les Sermons de Seydina Limamou psl",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+{
+    id: 28,
+    title: "les zikres layene",
+    excerpt: "zikr pdf",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Poèmes",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/11b-gwfWNPAIwKeNFfUZeGCyGS0nZROWQ/view?usp=sharing",
+            title: "les zikres layene",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736194745/les_poeme_jjaqz6.png",
+        }
+    ],
+    slug: "les zikres layene",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+{
+    id: 29,
+    title: "izaalou_djahli",
+    excerpt: "zikr pdf",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Poèmes",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1fOz9JDHJKJBJlk__aLGQxe6K0TGh498z/view?usp=sharing",
+            title: "izaalou_djahli",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736194745/les_poeme_jjaqz6.png",
+        }
+    ],
+    slug: "izaalou_djahli",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+
+{
+    id: 30,
+    title: "DIWAN - Kharikhou",
+    excerpt: "zikr pdf",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Poèmes",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1adLS89hzwtBF6X2SDScqFt50SCWjZXXU/view?usp=sharing",
+            title: "DIWAN - Kharikhou",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736194745/les_poeme_jjaqz6.png",
+        }
+    ],
+    slug: "DIWAN - Kharikhou",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+
+{
+    id: 31,
+    title: "DU'AUL KHALASS",
+    excerpt: "zikr pdf",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Poèmes",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1JJ_lSQmIJXFsCcQxybD0cOTrkj-5GAWb/view?usp=sharing",
+            title: "DU'AUL KHALASS",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736194745/les_poeme_jjaqz6.png",
+        }
+    ],
+    slug: "DU'AUL KHALASS",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+
+
+
+
 
 
 
