@@ -60,7 +60,7 @@ export const articles1 = [
         author: "Farlu Ci Diné ji",
         publishDate: "2024-12-22T09:15:00",
         readTime: "6 min",
-        category: "Actualités",
+        category: "Waxtane",
         likes: 89,
         isLiked: false,
         media: [
@@ -138,7 +138,7 @@ export const articles1 = [
         author: "Farlu Ci Diné ji",
         publishDate: "2024-12-22T09:15:00",
         readTime: "6 min",
-        category: "Actualités",
+        category: "Waxtane",
         likes: 8,
         isLiked: false,
         media: [
