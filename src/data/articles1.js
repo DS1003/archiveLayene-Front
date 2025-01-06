@@ -29,9 +29,9 @@ export const articles1 = [
     },
     {
         id: 2,
-        title: "Les enseignements fondamentaux du Mahdi",
+        title: "Pratiques culturelles Layène",
         excerpt: "Une exploration approfondie des principes essentiels enseignés par le Mahdi...",
-        author: "Cheikh Thierno Laye",
+        author: "Farlu Ci Diné ji",
         publishDate: "2024-12-23T15:45:00",
         readTime: "12 min",
         category: "Enseignements",
@@ -39,13 +39,13 @@ export const articles1 = [
         isLiked: false,
         media: [
             {
-                type: "image",
-                url: "https://res.cloudinary.com/dgro5x4h8/image/upload/v1730646094/5888_itihw3.png",
+                type: "pdf",
+                url: "https://drive.google.com/file/d/1b2ojT_2PP3umxJqVY8z76X4OdSc2Lhsf/view?usp=sharing",
                 title: "Illustration des enseignements",
-                thumbnailUrl: "https://res.cloudinary.com/dgro5x4h8/image/upload/v1730646094/5888_itihw3.png",
+                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
             }
         ],
-        slug: "enseignements-fondamentaux-mahdi",
+        slug: "Pratiques culturelles Layène",
         content: `
             <h2>Les Principes du Mahdi</h2>
             <p>Le Mahdi a enseigné des principes universels basés sur la justice, la paix, et l'unité...</p>
@@ -57,7 +57,7 @@ export const articles1 = [
         id: 3,
         title: "La communauté Layène aujourd'hui",
         excerpt: "Un regard sur l'évolution et l'état actuel de la communauté Layène...",
-        author: "Abdoulaye Diene",
+        author: "Farlu Ci Diné ji",
         publishDate: "2024-12-22T09:15:00",
         readTime: "6 min",
         category: "Actualités",
@@ -83,7 +83,7 @@ export const articles1 = [
         id: 4,
         title: "Conférence Cherif Ousseynou LAHI 2005 OHIO",
         excerpt: "Une analyse historique de la conférence mémorable tenue à Ohio en 2005.",
-        author: "Cherif Ousseynou Lahi",
+        author: "Farlu Ci Diné ji",
         publishDate: "2024-12-24T11:00:00",
         readTime: "8 min",
         category: "Histoire",
@@ -94,7 +94,7 @@ export const articles1 = [
                 type: "video",
                 url: "https://youtu.be/watch?v=82MGLXcuUrQ",
                 title: "Conférence à Ohio en 2005",
-                thumbnailUrl: "https://img.youtube.com/vi/82MGLXcuUrQ/maxresdefault.jpg",
+                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736169668/Capture_d_%C3%A9cran_137_cyex7u.png",
             }
         ],
         slug: "conference-cherif-ousseynou-lahi-2005-ohio",
@@ -109,7 +109,7 @@ export const articles1 = [
         id: 5,
         title: "Témoignages sur Chérif Ousseynou Lahi",
         excerpt: "Recueillez les récits émouvants de ceux qui ont connu Chérif Ousseynou Lahi.",
-        author: "Cherif Ousseynou Lahi",
+        author: "Farlu Ci Diné ji",
         publishDate: "2024-12-25T10:30:00",
         readTime: "8 min",
         category: "Histoire",
@@ -135,7 +135,7 @@ export const articles1 = [
         id: 6,
         title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
         excerpt: "Un regard sur l'évolution et l'état actuel de la communauté Layène...",
-        author: "Abdoulaye Diene",
+        author: "Farlu Ci Diné ji",
         publishDate: "2024-12-22T09:15:00",
         readTime: "6 min",
         category: "Actualités",
@@ -161,7 +161,7 @@ export const articles1 = [
         author: "Farlu ci Diine ji",
         publishDate: "2024-12-20T12:00:00",
         readTime: "10 min",
-        category: "Enseigments",
+        category: "Enseignements",
         likes: 302,
         isLiked: false,
         media: [
@@ -181,7 +181,7 @@ export const articles1 = [
         id: 9,
         title: "Vocabulaire Wolof",
         excerpt: "Un regard sur l'évolution et l'état actuel de la communauté Layène...",
-        author: "Farlu Ci Diné",
+        author: "Farlu Ci Diné ji",
         publishDate: "2024-12-22T09:15:00",
         readTime: "6 min",
         category: "Enseignements",
@@ -200,5 +200,280 @@ export const articles1 = [
             <h2>Les Défis Contemporains</h2>
             <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
     },
+    {
+        id: 10,
+        title: "LAXDARIYU",
+        excerpt: "LAXDARIYU EN WOLOF",
+        author: "Farlu Ci Diné ji",
+        publishDate: "2024-12-22T09:15:00",
+        readTime: "6 min",
+        category: "Enseignements",
+        likes: 102,
+        isLiked: false,
+        media: [
+            {
+                type: "pdf",
+                url: "https://drive.google.com/file/d/1wSqJ5uI3S-mF8hPgy9qLZ-2AaszhwJoW/view?usp=sharing",
+                title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
+                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+            }
+        ],
+        slug: "LAXDARIYU",
+        content: `
+            <h2>Les Défis Contemporains</h2>
+            <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+    },
+    {
+        id: 11,
+        title: "DIOULLI GUI",
+        excerpt: "La prière",
+        author: "Farlu Ci Diné ji",
+        publishDate: "2024-12-22T09:15:00",
+        readTime: "6 min",
+        category: "Enseignements",
+        likes: 102,
+        isLiked: false,
+        media: [
+            {
+                type: "pdf",
+                url: "https://drive.google.com/file/d/1xZSy1OfolV7IMTaGNq-TQ1olkOykIUSU/view?usp=sharing",
+                title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
+                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+            }
+        ],
+        slug: "DIOULLI GUI",
+        content: `
+            <h2>Les Défis Contemporains</h2>
+            <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+    },
+    
+ {
+    id: 12,
+    title: "LES AVANTAGES ET BIEN FAITS DU WIRD ET TASSAB LAYENE",
+    excerpt: "WIRD & TASSAB LAYENE",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Enseignements",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1OEapMG3x0pcBMnQTwHGuqjPVu8i9xL3q/view?usp=sharing",
+            title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+        }
+    ],
+    slug: "LES AVANTAGES ET BIEN FAITS DU WIRD ET TASSAB LAYENE",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+{
+    id: 13,
+    title: "Sourate 87 Le retour du prophete Mouhamad As.pdf",
+    excerpt: "LIS-TU VRAIMENT LE CORAN ?!!",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Enseignements",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1gS909YdVCDqvj3l-TIvcHdqbmKwpXuTW/view?usp=sharing",
+            title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+        }
+    ],
+    slug: "Sourate 87 Le retour du prophete Mouhamad As.pdf",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+{
+    id: 14,
+    title: "Salaatou_Alaa_Nabi",
+    excerpt: "DE PAR LE NOM DE DIEU, LE CLEMENT, LE MISERICORDIEUX",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Enseignements",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1GaOMG5UIscfrVaWBSbF0_-6xN1hdu0Tm/view?usp=sharing",
+            title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+        }
+    ],
+    slug: "Salaatou_Alaa_Nabi",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+
+{
+    id: 15,
+    title: "les_prophétes_seydina_limamou_le_mahdi_et_seydina_issa",
+    excerpt: "Le Mahdi & le Messie pse",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Enseignements",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1bJtL_raH8mxEp2Gjfwy9XGLUVp53zu4k/view?usp=sharing",
+            title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+        }
+    ],
+    slug: "les_prophétes_seydina_limamou_le_mahdi_et_seydina_issa",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+{
+    id: 16,
+    title: "Quran-Wolof",
+    excerpt: "LIS-TU VRAIMENT LE CORAN ?!!",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Enseignements",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1JjND_-EUW5AIk0xs-tG6Adw_HpSUTWZ3/view?usp=sharing",
+            title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+        }
+    ],
+    slug: "Quran-Wolof",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+{
+    id: 17,
+    title: "Wolof Grammar",
+    excerpt: " Explorez nos articles dans divers domaines",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Enseignements",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1Rtp9HU4vygw8l9N_cldUozPfNtXUc1__/view?usp=sharing",
+            title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+        }
+    ],
+    slug: "Wolof Grammar",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+
+{
+    id: 18,
+    title: "buchral muhibina en arabe",
+    excerpt: "Explorez nos articles dans divers domaines",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Enseignements",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "pdf",
+            url: "https://drive.google.com/file/d/1t6VtH55x8BpBLcKWUifp9EjtizTOIQON/view?usp=sharing",
+            title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736029619/enseignement_zorbzr.png",
+        }
+    ],
+    slug: "buchral muhibina en arabe",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+{
+    id: 19,
+    title: "CONFERANCE DE CHERIF OUSSEYNOU LAHI (RAT) A YEUMBEUL",
+    excerpt: "Cherif Sa leer dou faye",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Histoire",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "vidéo",
+            url: "https://youtu.be/4q6ZdCRf2ls?feature=shared",
+            title: "CONFERANCE DE CHERIF OUSSEYNOU LAHI (RAT) A YEUMBEUL",
+            thumbnailUrl: "https://img.youtube.com/vi/4q6ZdCRf2ls/maxresdefault.jpg",
+        }
+    ],
+    slug: "CONFERANCE DE CHERIF OUSSEYNOU LAHI (RAT) A YEUMBEUL",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+{
+    id: 20,
+    title: "FILM DOCUMENTAIRE SUR LA VIE ET OEUVRE DE CHERIF OUSSEYNOU LAYE DE 1945 2009",
+    excerpt: "Visite au USA",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Histoire",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "vidéo",
+            url: "https://youtu.be/jBupEpDXw2Q?feature=shared",
+            title: "FILM DOCUMENTAIRE SUR LA VIE ET OEUVRE DE CHERIF OUSSEYNOU LAYE DE 1945 2009",
+            thumbnailUrl: "https://img.youtube.com/vi/jBupEpDXw2Q/maxresdefault.jpg",
+        }
+    ],
+    slug: "FILM DOCUMENTAIRE SUR LA VIE ET OEUVRE DE CHERIF OUSSEYNOU LAYE DE 1945 2009",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+},
+
+
+
+
+
+
+
+
+
+
+
 
 ];
