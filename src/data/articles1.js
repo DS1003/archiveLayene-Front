@@ -1179,6 +1179,163 @@ content: `
                                                 
                                                 
                                                 },
+                                                {id:51,
+                                                    title: "Comando",
+                                                    excerpt: "Serigna Ablaye",
+                                                    author: "Farlu Ci Diné ji",
+                                                    publishDate: "2024-12-22T09:15:00",
+                                                    readTime: "6 min",
+                                                    category: "Zikr",
+                                                    likes: 102,
+                                                    isLiked: false,
+                                                    media: [
+                                                        {
+                                                            type: "audio",
+                                                            url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736264501/Comando_Serigne_Ablaye_-_Copie_hohzjy.mp4",
+                                                            title: "Comando",
+                                                            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736027553/ziky_bbgx3j.png",
+                                                        }
+                                                    ],
+                                                    slug: "Comando",
+                                                    content: `
+                                                        <h2>Les Défis Contemporains</h2>
+                                                        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                                    
+                                                    
+                                                    },
+                                                    {id:52,
+                                                        title: "Rohoulahi Alassane Dialé nu",
+                                                        excerpt: "Laye maxtar",
+                                                        author: "Farlu Ci Diné ji",
+                                                        publishDate: "2024-12-22T09:15:00",
+                                                        readTime: "6 min",
+                                                        category: "Zikr",
+                                                        likes: 102,
+                                                        isLiked: false,
+                                                        media: [
+                                                            {
+                                                                type: "audio",
+                                                                url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736026703/WhatsApp_Audio_2024-12-25_at_22.43.15_rvzg6l.mp4",
+                                                                title: "Rohoulahi Alassane Dialé nu",
+                                                                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736027553/ziky_bbgx3j.png",
+                                                            }
+                                                        ],
+                                                        slug: "Rohoulahi Alassane Dialé nu",
+                                                        content: `
+                                                            <h2>Les Défis Contemporains</h2>
+                                                            <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                                        
+                                                        
+                                                        },
+                                                        {id:53,
+                                                            title: "Baye Laye Ya bax",
+                                                            excerpt: "Laye maxtar",
+                                                            author: "Farlu Ci Diné ji",
+                                                            publishDate: "2024-12-22T09:15:00",
+                                                            readTime: "6 min",
+                                                            category: "Zikr",
+                                                            likes: 102,
+                                                            isLiked: false,
+                                                            media: [
+                                                                {
+                                                                    type: "audio",
+                                                                    url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736026704/WhatsApp_Audio_2024-12-25_at_22.43.06_qut2lp.mp4",
+                                                                    title: "Baye Laye Ya bax",
+                                                                    thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736027553/ziky_bbgx3j.png",
+                                                                }
+                                                            ],
+                                                            slug: "Baye Laye Ya bax",
+                                                            content: `
+                                                                <h2>Les Défis Contemporains</h2>
+                                                                <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                                            
+                                                            
+                                                            },
+                                                            {id:54,
+                                                                title: "DIOUG_LEN_GNOU_SANTE_BOU_WER",
+                                                                excerpt: "Diawar Lahi",
+                                                                author: "Farlu Ci Diné ji",
+                                                                publishDate: "2024-12-22T09:15:00",
+                                                                readTime: "6 min",
+                                                                category: "Zikr",
+                                                                likes: 102,
+                                                                isLiked: false,
+                                                                media: [
+                                                                    {
+                                                                        type: "audio",
+                                                                        url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736264521/1-_DIOUG_LEN_GNOU_SANTE_BOU_WER_bfslta.mp3",
+                                                                        title: "DIOUG_LEN_GNOU_SANTE_BOU_WER",
+                                                                        thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736027553/ziky_bbgx3j.png",
+                                                                    }
+                                                                ],
+                                                                slug: "DIOUG_LEN_GNOU_SANTE_BOU_WER",
+                                                                content: `
+                                                                    <h2>Les Défis Contemporains</h2>
+                                                                    <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                                                
+                                                                
+                                                                },
+                                                                {id:55,
+                                                                    title: "Zikr Nianou Baye Seydi Thiaw",
+                                                                    excerpt: "Zikr Niane",
+                                                                    author: "Farlu Ci Diné ji",
+                                                                    publishDate: "2024-12-22T09:15:00",
+                                                                    readTime: "6 min",
+                                                                    category: "Zikr",
+                                                                    likes: 102,
+                                                                    isLiked: false,
+                                                                    media: [
+                                                                        {
+                                                                            type: "audio",
+                                                                            url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736026702/WhatsApp_Audio_2024-12-25_at_22.43.41_pajgxp.mp4",
+                                                                            title: "Zikr Nianou Baye Seydi Thiaw",
+                                                                            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736027553/ziky_bbgx3j.png",
+                                                                        }
+                                                                    ],
+                                                                    slug: "Zikr Nianou Baye Seydi Thiaw",
+                                                                    content: `
+                                                                        <h2>Les Défis Contemporains</h2>
+                                                                        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                                                    
+                                                                    
+                                                                    },
+                                                                    {id:56,
+                                                                        title: "Baye Laye Ya di wada",
+                                                                        excerpt: "Mamadou Lahi Ndir",
+                                                                        author: "Farlu Ci Diné ji",
+                                                                        publishDate: "2024-12-22T09:15:00",
+                                                                        readTime: "6 min",
+                                                                        category: "Zikr",
+                                                                        likes: 102,
+                                                                        isLiked: false,
+                                                                        media: [
+                                                                            {
+                                                                                type: "audio",
+                                                                                url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736026700/WhatsApp_Audio_2024-12-25_at_22.47.08_iu5vre.mp3",
+                                                                                title: "Baye Laye Ya di wada",
+                                                                                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736027553/ziky_bbgx3j.png",
+                                                                            }
+                                                                        ],
+                                                                        slug: "Baye Laye Ya di wada",
+                                                                        content: `
+                                                                            <h2>Les Défis Contemporains</h2>
+                                                                            <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                                                        
+                                                                        
+                                                                        },
+                                                    
+                                                
+                                            
+                                            
+                                        
+                                    
+                                
+                                
+                                                
+                                            
+                                        
+                                        
+                                    
                                 
                             
                             
