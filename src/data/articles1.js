@@ -1007,6 +1007,185 @@ content: `
                     
                     
                     },
+                    {id: 44,
+                        title: "Comprendre les Sermons",
+                        excerpt: "Ababacar Lahi Basse",
+                        author: "Farlu Ci Diné ji",
+                        publishDate: "2024-12-22T09:15:00",
+                        readTime: "6 min",
+                        category: "Les Sermons",
+                        likes: 102,
+                        isLiked: false,
+                        media: [
+                            {
+                                type: "video",
+                                url: "https://www.youtube.com/watch?v=0QBTy04tpYQ&list=PLr6mVu6jDOV68lnW4CZliTdDifsbwTHGx",
+                                title: "LES SERMONS ANGLAIS",
+                                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736255463/58o_esruqc.png",
+                            }
+                        ],
+                        slug: "Comprendre les Sermons",
+                        content: `
+                            <h2>Les Défis Contemporains</h2>
+                            <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                        
+                        
+                        },
+                        {id: 45,
+                            title: "Jawaabus_saa-il ",
+                            excerpt: "français",
+                            author: "Farlu Ci Diné ji",
+                            publishDate: "2024-12-22T09:15:00",
+                            readTime: "6 min",
+                            category: "Enseignements",
+                            likes: 102,
+                            isLiked: false,
+                            media: [
+                                {
+                                    type: "pdf",
+                                    url: "https://drive.google.com/file/d/18LX1KcnHM5-WtB4yhGePCwyzMGKWwjY2/view?usp=sharing",
+                                    title: "Jawaabus_saa-il",
+                                    thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736181909/Diangal%C3%A8_kfgyei.png",
+                                }
+                            ],
+                            slug: "Jawaabus_saa-il",
+                            content: `
+                                <h2>Les Défis Contemporains</h2>
+                                <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                            
+                            
+                            },
+                            {id: 46,
+                                title: "JAWAABUS SÂ-IL ",
+                                excerpt: "Arabe",
+                                author: "Farlu Ci Diné ji",
+                                publishDate: "2024-12-22T09:15:00",
+                                readTime: "6 min",
+                                category: "Enseignements",
+                                likes: 102,
+                                isLiked: false,
+                                media: [
+                                    {
+                                        type: "pdf",
+                                        url: "https://drive.google.com/file/d/1xGk8I265xvJPCso5gVH39AYzfYScnvl4/view?usp=sharing",
+                                        title: "JAWAABUS SÂ-IL",
+                                        thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736181909/Diangal%C3%A8_kfgyei.png",
+                                    }
+                                ],
+                                slug: "JAWAABUS SÂ-IL",
+                                content: `
+                                    <h2>Les Défis Contemporains</h2>
+                                    <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                
+                                
+                                },
+                                {id: 47,
+                                    title: "Karbala 2",
+                                    excerpt: "Issa Ndoye Lahi",
+                                    author: "Farlu Ci Diné ji",
+                                    publishDate: "2024-12-22T09:15:00",
+                                    readTime: "6 min",
+                                    category: "Zikr",
+                                    likes: 102,
+                                    isLiked: false,
+                                    media: [
+                                        {
+                                            type: "audio",
+                                            url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736198759/Karbala_sbkmy4.mp3",
+                                            title: "Karbala 2",
+                                            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736027553/ziky_bbgx3j.png",
+                                        }
+                                    ],
+                                    slug: "Karbala 2",
+                                    content: `
+                                        <h2>Les Défis Contemporains</h2>
+                                        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                    
+                                    
+                                    },
+
+                                    {id: 48,
+                                        title: "Xarixu",
+                                        excerpt: "Makk gni",
+                                        author: "Farlu Ci Diné ji",
+                                        publishDate: "2024-12-22T09:15:00",
+                                        readTime: "6 min",
+                                        category: "Zikr",
+                                        likes: 102,
+                                        isLiked: false,
+                                        media: [
+                                            {
+                                                type: "audio",
+                                                url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736024340/Xarixu_pxbfkr.mp3",
+                                                title: "Xarixu",
+                                                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736027553/ziky_bbgx3j.png",
+                                            }
+                                        ],
+                                        slug: "Xarixu",
+                                        content: `
+                                            <h2>Les Défis Contemporains</h2>
+                                            <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                        
+                                        
+                                        },
+                                        {id: 49,
+                                    
+                                            title: "Wa Sali Ya Rabana",
+                                            excerpt: "Laye maxtar",
+                                            author: "Farlu Ci Diné ji",
+                                            publishDate: "2024-12-22T09:15:00",
+                                            readTime: "6 min",
+                                            category: "Zikr",
+                                            likes: 102,
+                                            isLiked: false,
+                                            media: [
+                                                {
+                                                    type: "audio",
+                                                    url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736024340/WhatsApp_Audio_2024-12-25_at_22.56.45_nmogn6.mp3",
+                                                    title: "Wa Sali Ya Rabana",
+                                                    thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736027553/ziky_bbgx3j.png",
+                                                }
+                                            ],
+                                            slug: "Wa Sali Ya Rabana",
+                                            content: `
+                                                <h2>Les Défis Contemporains</h2>
+                                                <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                            
+                                            
+                                            },
+
+                                            
+                                            {id:50,
+                                                title: "Sama mbir yep",
+                                                excerpt: "Ablaye Fall",
+                                                author: "Farlu Ci Diné ji",
+                                                publishDate: "2024-12-22T09:15:00",
+                                                readTime: "6 min",
+                                                category: "Zikr",
+                                                likes: 102,
+                                                isLiked: false,
+                                                media: [
+                                                    {
+                                                        type: "audio",
+                                                        url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736024314/Serigne_Abdoulaye_Thiaw_ripefh.mp3",
+                                                        title: "Sama mbir yep",
+                                                        thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736027553/ziky_bbgx3j.png",
+                                                    }
+                                                ],
+                                                slug: "Sama mbir yep",
+                                                content: `
+                                                    <h2>Les Défis Contemporains</h2>
+                                                    <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                                
+                                                
+                                                },
+                                
+                            
+                            
+                        
+                        
+                    
+                    
                 
             
             
