@@ -55,8 +55,8 @@ export const articles1 = [
     },
     {
         id: 3,
-        title: "La communauté Layène aujourd'hui",
-        excerpt: "Un regard sur l'évolution et l'état actuel de la communauté Layène...",
+        title: "Cherif Abdoulahi Thiaw Lahi",
+        excerpt: "Écoutez vos guides, suivez le chemin",
         author: "Farlu Ci Diné ji",
         publishDate: "2024-12-22T09:15:00",
         readTime: "6 min",
@@ -65,13 +65,13 @@ export const articles1 = [
         isLiked: false,
         media: [
             {
-                type: "pdf",
-                url: "https://drive.google.com/file/d/1adLS89hzwtBF6X2SDScqFt50SCWjZXXU/view?usp=sharing",
-                title: "Document PDF sur la communauté",
-                thumbnailUrl: "/api/placeholder/400/320",
+                type: "audio",
+                url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736024260/WhatsApp_Audio_2024-12-25_at_22.50.43_l5egfe.mp3",
+                title: "Cherif Abdoulahi Thiaw Lahi",
+                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736243569/a1_zvklov.png",
             }
         ],
-        slug: "communaute-layene-aujourd-hui",
+        slug: "Cherif Abdoulahi Thiaw Lahi",
         content: `
             <h2>Les Défis Contemporains</h2>
             <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>
@@ -133,8 +133,8 @@ export const articles1 = [
     },
     {
         id: 6,
-        title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
-        excerpt: "Un regard sur l'évolution et l'état actuel de la communauté Layène...",
+        title: "Serigne Ablaye Thiaw Lahi",
+        excerpt: "Sur Serigne Touba",
         author: "Farlu Ci Diné ji",
         publishDate: "2024-12-22T09:15:00",
         readTime: "6 min",
@@ -143,13 +143,13 @@ export const articles1 = [
         isLiked: false,
         media: [
             {
-                type: "pdf",
-                url: "https://drive.google.com/file/d/1ireP5QEyd5hGUHZ9s4pNSzOGQ5MlrkDE/view?usp=sharing",
-                title: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
-                thumbnailUrl: "",
+                type: "audio",
+                url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736024265/WhatsApp_Audio_2024-12-25_at_22.49.05_ddpcux.mp3",
+                title: "Serigne Ablaye Thiaw Lahi",
+                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736243569/a1_zvklov.png",
             }
         ],
-        slug: "Sermons de Seydinâ Limâmou Lâhi (PSL)",
+        slug: "Serigne Ablaye Thiaw Lahi",
         content: `
             <h2>Les Défis Contemporains</h2>
             <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
@@ -839,7 +839,180 @@ export const articles1 = [
     content: `
         <h2>Les Défis Contemporains</h2>
         <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+
+        id: 37,
+        title: "Baye Abdou Lahi",
+        excerpt: "Comment rompre son jeûne chez les layénes ?",
+        author: "Farlu Ci Diné ji",
+        publishDate: "2024-12-22T09:15:00",
+        readTime: "6 min",
+        category: "Waxtane",
+        likes: 8,
+        isLiked: false,
+        media: [
+            {
+                type: "audio",
+                url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736024244/WhatsApp_Audio_2024-12-25_at_22.56.55_frsuxs.mp3",
+                title: "Baye Abdou Lahi",
+                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736243569/a1_zvklov.png",
+            }
+        ],
+        slug: "Baye Abdou Lahi",
+        content: `
+            <h2>Les Défis Contemporains</h2>
+            <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
 },
+
+{id: 38,
+title: "Mamadou Lamine Lahi (Parti 1)",
+excerpt: "Sur le Mahdi psl",
+author: "Farlu Ci Diné ji",
+publishDate: "2024-12-22T09:15:00",
+readTime: "6 min",
+category: "Waxtane",
+likes: 102,
+isLiked: false,
+media: [
+    {
+        type: "audio",
+        url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736024186/Mouhamadou_Lamine_lAHI_sur_le_Mahdi_01_tenako.mp3",
+        title: "Mamadou Lamine Lahi (Parti 1)",
+        thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736243569/a2_kumdjs.png",
+    }
+],
+slug: "Mamadou Lamine Lahi (Parti 1)",
+content: `
+    <h2>Les Défis Contemporains</h2>
+    <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+
+
+},
+{id: 39,
+    title: "Mamadou Lamine Lahi (Parti 2)",
+    excerpt: "Sur le Mahdi psl",
+    author: "Farlu Ci Diné ji",
+    publishDate: "2024-12-22T09:15:00",
+    readTime: "6 min",
+    category: "Waxtane",
+    likes: 102,
+    isLiked: false,
+    media: [
+        {
+            type: "audio",
+            url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736024184/Mouhamadou_Lamine_lAHI_sur_le_Mahdi_02_ftl04c.mp3",
+            title: "Mamadou Lamine Lahi (Parti 2)",
+            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736243569/a2_kumdjs.png",
+        }
+    ],
+    slug: "Mamadou Lamine Lahi (Parti 2)",
+    content: `
+        <h2>Les Défis Contemporains</h2>
+        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+    
+    
+    },
+    {id: 40,
+        title: "Mamadou Lamine Lahi (Parti 3)",
+        excerpt: "Sur le Mahdi psl",
+        author: "Farlu Ci Diné ji",
+        publishDate: "2024-12-22T09:15:00",
+        readTime: "6 min",
+        category: "Waxtane",
+        likes: 102,
+        isLiked: false,
+        media: [
+            {
+                type: "audio",
+                url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736024182/Mouhamadou_Lamine_lAHI_sur_le_Mahdi_03_os8lh1.mp3",
+                title: "Mamadou Lamine Lahi (Parti 3)",
+                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736243569/a2_kumdjs.png",
+            }
+        ],
+        slug: "Mamadou Lamine Lahi (Parti 3)",
+        content: `
+            <h2>Les Défis Contemporains</h2>
+            <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+        
+        
+        },
+        {id: 41,
+            title: "Mamadou Lamine Lahi (Parti 4)",
+            excerpt: "Sur le Mahdi psl",
+            author: "Farlu Ci Diné ji",
+            publishDate: "2024-12-22T09:15:00",
+            readTime: "6 min",
+            category: "Waxtane",
+            likes: 102,
+            isLiked: false,
+            media: [
+                {
+                    type: "audio",
+                    url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736024186/Mouhamadou_Lamine_lAHI_sur_le_Mahdi_04_b1xoo9.mp3",
+                    title: "Mamadou Lamine Lahi (Parti 4)",
+                    thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736243569/a2_kumdjs.png",
+                }
+            ],
+            slug: "Mamadou Lamine Lahi (Parti 4)",
+            content: `
+                <h2>Les Défis Contemporains</h2>
+                <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+            
+            
+            },
+            {id: 42,
+                title: "LES SERMONS ANGLAIS",
+                excerpt: "Seydina Limamou & Seydina Issa Pse",
+                author: "Farlu Ci Diné ji",
+                publishDate: "2024-12-22T09:15:00",
+                readTime: "6 min",
+                category: "Les Sermons",
+                likes: 102,
+                isLiked: false,
+                media: [
+                    {
+                        type: "pdf",
+                        url: "https://drive.google.com/file/d/1LC14YGFstMG50dg2n-c0pPAOSAfqNuBy/view?usp=sharing",
+                        title: "LES SERMONS ANGLAIS",
+                        thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736253135/Anglais_sermon_y6ophh.png",
+                    }
+                ],
+                slug: "LES SERMONS ANGLAIS",
+                content: `
+                    <h2>Les Défis Contemporains</h2>
+                    <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                
+                
+                },
+                {id: 43,
+                    title: "Comprendre les Sermons",
+                    excerpt: "Ababacar Lahi Basse",
+                    author: "Farlu Ci Diné ji",
+                    publishDate: "2024-12-22T09:15:00",
+                    readTime: "6 min",
+                    category: "Les Sermons",
+                    likes: 102,
+                    isLiked: false,
+                    media: [
+                        {
+                            type: "video",
+                            url: "https://www.youtube.com/watch?v=0QBTy04tpYQ&list=PLr6mVu6jDOV68lnW4CZliTdDifsbwTHGx",
+                            title: "LES SERMONS ANGLAIS",
+                            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736255463/58o_esruqc.png",
+                        }
+                    ],
+                    slug: "Comprendre les Sermons",
+                    content: `
+                        <h2>Les Défis Contemporains</h2>
+                        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                    
+                    
+                    },
+                
+            
+            
+        
+    
+
 
 
 
