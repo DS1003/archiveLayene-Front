@@ -1323,6 +1323,108 @@ content: `
                                                                         
                                                                         
                                                                         },
+                                                                        {id:57,
+                                                                            title: "Dans la Nuit du Destin",
+                                                                            excerpt: "Historique",
+                                                                            author: "Farlu Ci Diné ji",
+                                                                            publishDate: "2024-12-22T09:15:00",
+                                                                            readTime: "6 min",
+                                                                            category: "Archives",
+                                                                            likes: 102,
+                                                                            isLiked: false,
+                                                                            media: [
+                                                                                {
+                                                                                    type: "pdf",
+                                                                                    url: "https://drive.google.com/file/d/1LJQpQam3sRTHVxzGE5RjKott1-YKoLhU/view?usp=sharing",
+                                                                                    title: "Dans la Nuit du Destin",
+                                                                                    thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736267665/4ec0a8d8-fb30-4c2f-b350-c0d44157f27a.png",
+                                                                                }
+                                                                            ],
+                                                                            slug: "Dans la Nuit du Destin",
+                                                                            content: `
+                                                                                <h2>Les Défis Contemporains</h2>
+                                                                                <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                                                            
+                                                                            
+                                                                            },
+                                                                            {id:58,
+                                                                                title: "Campagne de sensiblisation",
+                                                                                excerpt: "Historique",
+                                                                                author: "Farlu Ci Diné ji",
+                                                                                publishDate: "2024-12-22T09:15:00",
+                                                                                readTime: "6 min",
+                                                                                category: "Archives",
+                                                                                likes: 102,
+                                                                                isLiked: false,
+                                                                                media: [
+                                                                                    {
+                                                                                        type: "pdf",
+                                                                                        url: "https://drive.google.com/file/d/1O1JKyU-14Bi9eNgaOOqgXiZBIIm4v8be/view?usp=sharing",
+                                                                                        title: "Campagne de sensiblisation",
+                                                                                        thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736268573/Sans_titre-1_xzwid9.png",
+                                                                                    }
+                                                                                ],
+                                                                                slug: "Campagne de sensiblisation",
+                                                                                content: `
+                                                                                    <h2>Les Défis Contemporains</h2>
+                                                                                    <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                                                                
+                                                                                
+                                                                                },
+                                                                                {id:59,
+                                                                                    title: "Baye Laye Ya di wada",
+                                                                                    excerpt: "Mamadou Lahi Ndir",
+                                                                                    author: "Farlu Ci Diné ji",
+                                                                                    publishDate: "2024-12-22T09:15:00",
+                                                                                    readTime: "6 min",
+                                                                                    category: "Zikr",
+                                                                                    likes: 102,
+                                                                                    isLiked: false,
+                                                                                    media: [
+                                                                                        {
+                                                                                            type: "audio",
+                                                                                            url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736026700/WhatsApp_Audio_2024-12-25_at_22.47.08_iu5vre.mp3",
+                                                                                            title: "Baye Laye Ya di wada",
+                                                                                            thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736027553/ziky_bbgx3j.png",
+                                                                                        }
+                                                                                    ],
+                                                                                    slug: "Baye Laye Ya di wada",
+                                                                                    content: `
+                                                                                        <h2>Les Défis Contemporains</h2>
+                                                                                        <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                                                                    
+                                                                                    
+                                                                                    },
+                                                                                    {id:60,
+                                                                                        title: "Jalla Jalaalune",
+                                                                                        excerpt: "Pape Abdoulahi Dia",
+                                                                                        author: "Farlu Ci Diné ji",
+                                                                                        publishDate: "2024-12-22T09:15:00",
+                                                                                        readTime: "6 min",
+                                                                                        category: "Zikr",
+                                                                                        likes: 102,
+                                                                                        isLiked: false,
+                                                                                        media: [
+                                                                                            {
+                                                                                                type: "audio",
+                                                                                                url: "https://res.cloudinary.com/dzuji72ik/video/upload/v1736448329/DIALLA_DIALALOUN_MIX_G-1_nywbm0.mp3",
+                                                                                                title: "Jalla Jalaalune",
+                                                                                                thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1736448276/Purple_an_wfhigw.jpg",
+                                                                                            }
+                                                                                        ],
+                                                                                        slug: "Jalla Jalaalune",
+                                                                                        content: `
+                                                                                            <h2>Les Défis Contemporains</h2>
+                                                                                            <p>La communauté Layène fait face à des défis uniques à l'ère moderne, mais continue de croître...</p>`,
+                                                                                        
+                                                                                        
+                                                                                        },
+                                                                
+                                                            
+                                                        
+                                                        
+                                                        
+                                                    
                                                     
                                                 
                                             
