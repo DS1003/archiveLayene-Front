@@ -1419,7 +1419,26 @@ content: `
                                                                                         
                                                                                         
                                                                                         },
-                                                                
+                                                                                        {id:61,
+                                                                                            title: "MARSIYA MAME IBRAHIMA SENY LAHI",
+                                                                                            excerpt: "Laye maxtar",
+                                                                                            author: "Mouhamadou Lahi Ndir",
+                                                                                            publishDate: "2024-12-22T09:15:00",
+                                                                                            readTime: "6 min",
+                                                                                            category: "Poèmes",
+                                                                                            likes: 102,
+                                                                                            isLiked: false,
+                                                                                            media: [
+                                                                                                {
+                                                                                                    type: "pdf",
+                                                                                                    url: "https://drive.google.com/file/d/1bZ7PBYlN-6iSFcXtx514IhDlzCilPeLV/view?usp=sharing",
+                                                                                                    title: "MARSIYA MAME IBRAHIMA SENY LAHI",
+                                                                                                    thumbnailUrl: "https://res.cloudinary.com/dzuji72ik/image/upload/v1739529438/Marsiya_1_ppjatv.jpg",
+                                                                                                }
+                                                                                       
+                                                                                        
+                                                                                        
+                                                                                        
                                                             
                                                         
                                                         
